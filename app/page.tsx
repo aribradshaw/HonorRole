@@ -10,6 +10,7 @@ export default function Home() {
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [overFooter, setOverFooter] = useState(false);
+  const [logoOpacity, setLogoOpacity] = useState(0); // 0 = black visible, 1 = white visible
   const videoRef = useRef<HTMLVideoElement>(null);
   const footerRef = useRef<HTMLElement>(null);
 
@@ -26,12 +27,31 @@ export default function Home() {
       const heroHeight = window.innerHeight;
       setScrolledPastHero(window.scrollY > heroHeight);
       
-      // Check if header is over footer
+      // Check if header is over footer and calculate logo transition
       if (footerRef.current) {
         const footerTop = footerRef.current.offsetTop;
         const headerHeight = 100; // Approximate header height
         const scrollY = window.scrollY;
-        setOverFooter(scrollY + headerHeight >= footerTop);
+        const headerBottom = scrollY + headerHeight;
+        const isOverFooter = headerBottom >= footerTop;
+        setOverFooter(isOverFooter);
+        
+        // Calculate transition percentage (0 = black, 1 = white)
+        // Start transition when header bottom is 200px before footer top
+        // Complete transition when header bottom reaches footer top
+        const transitionStart = footerTop - 200;
+        const transitionEnd = footerTop;
+        const transitionRange = transitionEnd - transitionStart;
+        
+        if (headerBottom >= transitionStart && headerBottom <= transitionEnd) {
+          // Calculate opacity: 0 at transitionStart, 1 at transitionEnd
+          const progress = (headerBottom - transitionStart) / transitionRange;
+          setLogoOpacity(Math.max(0, Math.min(1, progress)));
+        } else if (headerBottom > transitionEnd) {
+          setLogoOpacity(1); // Fully white
+        } else {
+          setLogoOpacity(0); // Fully black
+        }
       }
     };
     window.addEventListener('scroll', handleScroll);
@@ -186,19 +206,57 @@ export default function Home() {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className={scrolledPastHero ? 'block' : 'pointer-events-none'}
           >
-            <Link href="/" className="block">
-              <Image
-                src="/logofiles/Honor-Role-Logo_Black.png"
-                alt="Honor Role"
-                width={200}
-                height={60}
-                className="h-8 w-auto"
-                priority
-                style={{ 
-                  borderRadius: 0,
-                  filter: overFooter ? 'brightness(0) invert(1)' : 'none'
+            <Link href="/" className="block relative">
+              {/* Black logo (base layer) */}
+              <div
+                style={{
+                  opacity: 1 - logoOpacity,
+                  transition: 'opacity 0.3s ease-out',
                 }}
-              />
+                className="absolute inset-0"
+              >
+                <Image
+                  src="/logofiles/Honor-Role-Logo_Black.png"
+                  alt="Honor Role"
+                  width={200}
+                  height={60}
+                  className="h-8 w-auto"
+                  priority
+                  style={{ borderRadius: 0 }}
+                />
+              </div>
+              {/* White logo (overlay layer) */}
+              <div
+                style={{
+                  opacity: logoOpacity,
+                  transition: 'opacity 0.3s ease-out',
+                }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src="/logofiles/Honor-Role-Logo_Black.png"
+                  alt="Honor Role"
+                  width={200}
+                  height={60}
+                  className="h-8 w-auto"
+                  priority
+                  style={{ 
+                    borderRadius: 0,
+                    filter: 'brightness(0) invert(1)'
+                  }}
+                />
+              </div>
+              {/* Spacer to maintain layout */}
+              <div className="invisible">
+                <Image
+                  src="/logofiles/Honor-Role-Logo_Black.png"
+                  alt="Honor Role"
+                  width={200}
+                  height={60}
+                  className="h-8 w-auto"
+                  style={{ borderRadius: 0 }}
+                />
+              </div>
             </Link>
           </motion.div>
           {/* Hamburger menu - shown before scrolling past hero */}
@@ -245,7 +303,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
                 >
                   <Link 
-                    href="#work" 
+                    href="/work" 
                     onClick={() => setMenuOpen(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
                   >
@@ -261,7 +319,39 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
                 >
                   <Link 
-                    href="#contact" 
+                    href="/merch" 
+                    onClick={() => setMenuOpen(false)}
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                  >
+                    Merch
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ 
+                    x: menuOpen ? 0 : 20,
+                    opacity: menuOpen ? 1 : 0
+                  }}
+                  transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
+                >
+                  <Link 
+                    href="/press" 
+                    onClick={() => setMenuOpen(false)}
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                  >
+                    Press
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ 
+                    x: menuOpen ? 0 : 20,
+                    opacity: menuOpen ? 1 : 0
+                  }}
+                  transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+                >
+                  <Link 
+                    href="/contact" 
                     onClick={() => setMenuOpen(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
                   >
@@ -309,7 +399,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: scrolledPastHero ? 1 : 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className={`flex items-center gap-12 text-sm ${scrolledPastHero ? 'flex' : 'hidden pointer-events-none'}`}
+            className={`flex items-center gap-8 text-sm ${scrolledPastHero ? 'flex' : 'hidden pointer-events-none'}`}
           >
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link 
@@ -321,7 +411,7 @@ export default function Home() {
             </motion.div>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link 
-                href="#work" 
+                href="/work" 
                 className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
               >
                 Work
@@ -329,7 +419,23 @@ export default function Home() {
             </motion.div>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link 
-                href="#contact" 
+                href="/merch" 
+                className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              >
+                Merch
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Link 
+                href="/press" 
+                className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              >
+                Press
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Link 
+                href="/contact" 
                 className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
               >
                 Contact
@@ -620,8 +726,37 @@ export default function Home() {
               </a>
             </motion.div>
           </motion.div>
-          <div className="text-sm text-[#fce2ef]/70 pt-8 border-t border-[#fce2ef]/20">
-            <p>© {new Date().getFullYear()} Honor Role. All rights reserved.</p>
+          {/* Movie Poster Style Credits */}
+          <div className="pt-8 border-t border-[#fce2ef]/20">
+            <div className="text-xs text-[#fce2ef]/60 space-y-1 font-mono tracking-wider leading-relaxed">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+                <span>© {new Date().getFullYear()} HONOR ROLE PRODUCTIONS</span>
+                <span className="text-[#fce2ef]/40">|</span>
+                <span>ALL RIGHTS RESERVED</span>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3">
+                <Link 
+                  href="/privacy-policy" 
+                  className="hover:text-[#ffbb71] transition-colors underline"
+                >
+                  PRIVACY POLICY
+                </Link>
+                <span className="text-[#fce2ef]/40">|</span>
+                <Link 
+                  href="/terms-and-conditions" 
+                  className="hover:text-[#ffbb71] transition-colors underline"
+                >
+                  TERMS & CONDITIONS
+                </Link>
+                <span className="text-[#fce2ef]/40">|</span>
+                <Link 
+                  href="/california-privacy-rights" 
+                  className="hover:text-[#ffbb71] transition-colors underline"
+                >
+                  CALIFORNIA PRIVACY RIGHTS
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

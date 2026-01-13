@@ -1,9 +1,12 @@
 'use client';
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
+import { FiMail } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa";
 
 export default function ContactPage() {
 
@@ -35,29 +38,42 @@ export default function ContactPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Email</h2>
               <a
                 href="mailto:hi@honorrole.com"
-                className="text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors underline"
+                className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors underline"
+                aria-label="Email Honor Role"
               >
-                hi@honorrole.com
+                <FiMail className="text-3xl md:text-4xl flex-shrink-0" aria-hidden="true" />
+                <span>hi@honorrole.com</span>
               </a>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
               <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Follow</h2>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <a
                   href="https://www.instagram.com/honorrole/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors underline"
+                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors underline"
+                  aria-label="Honor Role on Instagram"
                 >
-                  Instagram: @honorrole
+                  <FaInstagram className="text-3xl md:text-4xl flex-shrink-0" aria-hidden="true" />
+                  <span>@honorrole</span>
                 </a>
                 <a
                   href="https://www.imdb.com/company/co1234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors underline"
+                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors underline"
+                  aria-label="Honor Role on IMDb"
                 >
-                  IMDb: Honor Role
+                  <Image
+                    src="/logofiles/IMDB_Logo_2016.svg"
+                    alt="IMDb"
+                    width={64}
+                    height={32}
+                    className="h-7 md:h-8 w-auto flex-shrink-0"
+                    priority={false}
+                  />
+                  <span>Honor Role</span>
                 </a>
               </div>
             </motion.div>

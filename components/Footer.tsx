@@ -11,7 +11,6 @@ export default function Footer() {
   const [overFooter, setOverFooter] = useState(false);
   const [logoOpacity, setLogoOpacity] = useState(0);
   const footerRef = useRef<HTMLElement>(null);
-  const imdbHref = "https://www.imdb.com/find/?q=Honor%20Role&s=all";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,23 +107,6 @@ export default function Footer() {
               >
                 <FaInstagram className="text-3xl flex-shrink-0" aria-hidden="true" />
                 <span>@honorrole</span>
-              </a>
-
-              <a
-                href={imdbHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-4 hover:opacity-90 transition-opacity"
-                aria-label="Honor Role on IMDb"
-              >
-                <Image
-                  src="/logofiles/IMDB_Logo_2016.svg"
-                  alt="IMDb"
-                  width={64}
-                  height={32}
-                  className="h-8 w-auto"
-                  priority={false}
-                />
               </a>
             </div>
           </motion.div>

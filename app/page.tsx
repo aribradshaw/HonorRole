@@ -1,7 +1,5 @@
 'use client';
 
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
@@ -205,139 +203,144 @@ export default function Home() {
         <div className="bg-[#d1d3c7]">
           {/* About Section */}
           <section id="about" className="relative w-full py-32 px-4 md:px-8">
-        <div className="w-full max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-12 bg-[#fce2ef]/50 backdrop-blur-sm rounded-custom-xl p-12 md:p-16 shadow-lg"
-          >
-            <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
-              Merging the founder&apos;s academic roots with a focus on character-driven stories that &quot;honor&quot; the role and uplift actors — Honor Role distills both ideas into one holistic, fresh identity.
-            </p>
-            
-            <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
-              The identity premiered at the{" "}
-              <motion.a
-                href="https://tribecafilm.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-[#729bd9] transition-colors font-semibold"
-                whileHover={{ scale: 1.05 }}
+            <div className="w-full max-w-6xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-12 bg-[#fce2ef]/50 backdrop-blur-sm rounded-custom-xl p-12 md:p-16 shadow-lg"
               >
-                Tribeca Film Festival
-              </motion.a>{" "}
-              in June, where the company won best narrative for their first film,{" "}
-              <motion.a
-                href="https://tribecafilm.com/films/griffin-in-summer-2024"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-[#729bd9] transition-colors font-semibold"
-                whileHover={{ scale: 1.05 }}
-              >
-                Griffin in Summer
-              </motion.a>
-              .
-            </p>
-          </motion.div>
-        </div>
+                <div className="space-y-6">
+                  <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#181619]">
+                    Honor Role
+                  </h2>
+                  <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
+                    Honor Role is a production company founded by Camila Mendes and Rachel Matthews,
+                    focused on character-driven film and television — work that treats performance as
+                    the engine of story and builds worlds actors can fully inhabit.
+                  </p>
+                  <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
+                    We partner with sharp filmmakers with distinct points of view, aiming to strike a
+                    balance between art and commerce.
+                  </p>
+                  <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
+                    Our first film,{" "}
+                    <motion.a
+                      href="https://tribecafilm.com/films/griffin-in-summer-2024"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-[#729bd9] transition-colors font-semibold"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Griffin in Summer
+                    </motion.a>
+                    , premiered at the{" "}
+                    <motion.a
+                      href="https://tribecafilm.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-[#729bd9] transition-colors font-semibold"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Tribeca Film Festival
+                    </motion.a>{" "}
+                    and won Best Narrative.
+                  </p>
+                  <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
+                    We produce with an actor-first mindset — prioritizing rehearsal, collaboration, and
+                    a process that serves the story from development through post.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </section>
 
-      {/* Brand Identity Section */}
-      <section id="work" className="relative w-full py-32 px-4 md:px-8">
-        <div className="w-full max-w-[1920px] mx-auto space-y-32">
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid md:grid-cols-2 gap-12 items-center w-full"
-          >
-            <div className="space-y-6 bg-[#a6bef6]/30 backdrop-blur-sm rounded-custom-xl p-8 md:p-12">
-              <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
-                Drawing inspiration from a scholastic vernacular and the undulating curves of Honor Roll ribbon motifs, the identity celebrates the company&apos;s merging of art and academia.
-              </p>
-            </div>
-            <motion.div
-              whileHover={{ scale: 1.02, rotate: 1 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="relative aspect-[4/5] w-full rounded-custom-xl overflow-hidden shadow-2xl"
-            >
-              <Image
-                src="/image1.jpg"
-                alt="Honor Role Brand Identity"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </motion.div>
-          </motion.div>
+          {/* Upcoming Works Section */}
+          <section id="work" className="relative w-full py-32 px-4 md:px-8">
+            <div className="w-full max-w-6xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-12"
+              >
+                <div className="space-y-4">
+                  <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#181619]">
+                    Upcoming Works
+                  </h2>
+                  <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
+                    New projects are in active development. We’ll share titles and talent as soon as we can.
+                  </p>
+                </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid md:grid-cols-2 gap-12 items-center w-full"
-          >
-            <motion.div
-              whileHover={{ scale: 1.02, rotate: -1 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="relative aspect-[4/5] w-full rounded-custom-xl overflow-hidden shadow-2xl order-2 md:order-1"
-            >
-              <Image
-                src="/image2.jpg"
-                alt="Honor Role Wordmark"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </motion.div>
-            <div className="space-y-6 bg-[#ffbb71]/30 backdrop-blur-sm rounded-custom-xl p-8 md:p-12 order-1 md:order-2">
-              <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
-                The wordmark is coupled by a golden bow, symbolic of the ribbon that ties a graduation certificate.
-              </p>
-              <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
-                We worked closely with{" "}
-                <motion.a
-                  href="https://nicolobianchino.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-[#729bd9] transition-colors font-semibold"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  Nicolo Bianchino
-                </motion.a>{" "}
-                to perfectly bring wordmark to life in animation, exactly as we&apos;d dreamt it.
-              </p>
-            </div>
-          </motion.div>
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="rounded-custom-xl bg-[#a6bef6]/30 backdrop-blur-sm p-8 shadow-lg">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="text-sm font-semibold tracking-wider text-[#181619]/70 uppercase">
+                        Feature Film
+                      </div>
+                      <span className="text-xs font-semibold tracking-wider uppercase rounded-full bg-white/50 px-3 py-1 text-[#181619]">
+                        Aiming to Shoot 2026
+                      </span>
+                    </div>
+                    <div className="mt-4 text-2xl font-semibold text-[#181619]">Title TBA</div>
+                    <div className="mt-3 text-lg leading-relaxed text-[#181619]">
+                      One of two Latin-forward projects currently in development. Details to be announced.
+                    </div>
+                  </div>
 
-          {/* Logo Display */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex justify-center items-center py-16 w-full"
-          >
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="rounded-custom-xl overflow-hidden shadow-2xl bg-white/50 backdrop-blur-sm p-8"
-            >
-              <Image
-                src="/logofiles/Honor-Role-Logo_Black.png"
-                alt="Honor Role Logo"
-                width={865}
-                height={573}
-                className="max-w-full h-auto"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+                  <div className="rounded-custom-xl bg-[#ffbb71]/30 backdrop-blur-sm p-8 shadow-lg">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="text-sm font-semibold tracking-wider text-[#181619]/70 uppercase">
+                        Feature Film
+                      </div>
+                      <span className="text-xs font-semibold tracking-wider uppercase rounded-full bg-white/50 px-3 py-1 text-[#181619]">
+                        Mexico City (July/Aug)
+                      </span>
+                    </div>
+                    <div className="mt-4 text-2xl font-semibold text-[#181619]">Title TBA</div>
+                    <div className="mt-3 text-lg leading-relaxed text-[#181619]">
+                      A Latin-forward project aiming to shoot in Mexico City. More info coming soon.
+                    </div>
+                  </div>
+
+                  <div className="rounded-custom-xl bg-white/50 backdrop-blur-sm p-8 shadow-lg">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="text-sm font-semibold tracking-wider text-[#181619]/70 uppercase">
+                        Development Slate
+                      </div>
+                      <span className="text-xs font-semibold tracking-wider uppercase rounded-full bg-[#181619] px-3 py-1 text-white">
+                        Announcing Soon
+                      </span>
+                    </div>
+                    <div className="mt-4 text-2xl font-semibold text-[#181619]">More to come</div>
+                    <div className="mt-3 text-lg leading-relaxed text-[#181619]">
+                      Additional film and TV projects are in the works — we’ll share details when they’re public.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-custom-xl bg-[#181619] text-white p-10 md:p-12 shadow-2xl flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                  <div className="space-y-2">
+                    <div className="text-sm font-semibold tracking-wider uppercase text-white/70">
+                      Partnerships & inquiries
+                    </div>
+                    <div className="text-xl md:text-2xl leading-relaxed">
+                      For collaborators, press, or production inquiries, reach out anytime.
+                    </div>
+                  </div>
+                  <a
+                    href="mailto:hi@honorrole.com"
+                    className="inline-flex items-center justify-center rounded-full bg-white/90 text-[#181619] px-6 py-3 text-sm font-semibold tracking-wide hover:bg-white transition-colors"
+                  >
+                    hi@honorrole.com
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </section>
 
       {/* Footer */}
       <Footer />

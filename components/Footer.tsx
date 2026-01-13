@@ -4,11 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { FiMail } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   const [overFooter, setOverFooter] = useState(false);
   const [logoOpacity, setLogoOpacity] = useState(0);
   const footerRef = useRef<HTMLElement>(null);
+  const imdbHref = "https://www.imdb.com/find/?q=Honor%20Role&s=all";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,9 +86,11 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-2xl">Contact</h3>
             <a
               href="mailto:hi@honorrole.com"
-              className="text-2xl underline hover:text-[#ffbb71] transition-colors"
+              className="inline-flex items-center gap-4 text-2xl underline hover:text-[#ffbb71] transition-colors"
+              aria-label="Email Honor Role"
             >
-              hi@honorrole.com
+              <FiMail className="text-3xl flex-shrink-0" aria-hidden="true" />
+              <span>hi@honorrole.com</span>
             </a>
           </motion.div>
           <motion.div
@@ -93,14 +98,35 @@ export default function Footer() {
             transition={{ type: "spring", stiffness: 200 }}
           >
             <h3 className="font-semibold mb-4 text-2xl">Follow</h3>
-            <a
-              href="https://www.instagram.com/honorrole/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl underline hover:text-[#ffbb71] transition-colors"
-            >
-              @honorrole
-            </a>
+            <div className="flex flex-wrap items-center gap-6">
+              <a
+                href="https://www.instagram.com/honorrole/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-4 text-2xl underline hover:text-[#ffbb71] transition-colors"
+                aria-label="Honor Role on Instagram"
+              >
+                <FaInstagram className="text-3xl flex-shrink-0" aria-hidden="true" />
+                <span>@honorrole</span>
+              </a>
+
+              <a
+                href={imdbHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-4 hover:opacity-90 transition-opacity"
+                aria-label="Honor Role on IMDb"
+              >
+                <Image
+                  src="/logofiles/IMDB_Logo_2016.svg"
+                  alt="IMDb"
+                  width={64}
+                  height={32}
+                  className="h-8 w-auto"
+                  priority={false}
+                />
+              </a>
+            </div>
           </motion.div>
         </motion.div>
         

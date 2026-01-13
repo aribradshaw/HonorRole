@@ -126,10 +126,22 @@ export default function WorkPage() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={
+                        link.type === "apple-tv"
+                          ? "Watch on Apple TV"
+                          : link.type === "hulu"
+                            ? "Stream on Hulu"
+                            : link.label
+                      }
                       className="px-6 py-3 bg-[#181619] text-white hover:bg-[#ca9215] transition-colors rounded-custom"
                     >
                       <span className="inline-flex items-center gap-2">
-                        {link.type === "apple-tv" && <FaApple aria-hidden="true" />}
+                        {link.type === "apple-tv" && (
+                          <>
+                            <FaApple aria-hidden="true" />
+                            <span>TV</span>
+                          </>
+                        )}
                         {link.type === "hulu" && (
                           <Image
                             src="/logofiles/Hulu_logo_(2018).svg"
@@ -140,7 +152,7 @@ export default function WorkPage() {
                             style={{ filter: "brightness(0) invert(1)", borderRadius: 0 }}
                           />
                         )}
-                        <span>{link.label}</span>
+                        {link.type !== "apple-tv" && link.type !== "hulu" && <span>{link.label}</span>}
                       </span>
                     </Link>
                   ))}

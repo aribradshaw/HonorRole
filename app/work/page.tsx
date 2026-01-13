@@ -113,7 +113,7 @@ export default function WorkPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on IMDb`}
-                      className="absolute top-4 right-4 rounded-md bg-white/90 backdrop-blur-sm p-2 shadow-lg hover:bg-white transition-colors"
+                      className="absolute top-4 right-4 hover:opacity-90 transition-opacity"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <Image

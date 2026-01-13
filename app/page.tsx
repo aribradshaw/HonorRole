@@ -140,7 +140,7 @@ export default function Home() {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-contain md:object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
           style={{ minWidth: '100%', minHeight: '100%', backgroundColor: '#181619' }}
           onError={(e) => {
             const video = e.currentTarget;

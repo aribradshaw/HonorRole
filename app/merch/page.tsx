@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
-import { FaInstagram } from "react-icons/fa";
 
 export default function MerchPage() {
 
@@ -44,9 +43,8 @@ export default function MerchPage() {
                 href="https://www.instagram.com/honorrole/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#181619] text-white hover:bg-[#ca9215] transition-colors rounded-custom text-lg"
+                className="inline-block px-8 py-4 bg-[#181619] text-white hover:bg-[#ca9215] transition-colors rounded-custom text-lg"
               >
-                <FaInstagram className="text-xl flex-shrink-0" aria-hidden="true" />
                 Follow @honorrole for updates
               </Link>
             </div>

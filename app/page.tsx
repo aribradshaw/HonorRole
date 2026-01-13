@@ -332,52 +332,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Credits Section */}
-      <section className="relative w-full py-32 px-4 md:px-8 border-t border-[#181619]/10">
-        <div className="w-full max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid md:grid-cols-2 gap-12 bg-[#729bd9]/20 backdrop-blur-sm rounded-custom-xl p-12 md:p-16"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05, x: 10 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
-              <p className="font-semibold mb-3 text-2xl text-[#181619]">Wordmark Motion</p>
-              <p className="text-xl text-[#181619]">
-                <a
-                  href="https://nicolobianchino.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-[#ca9215] transition-colors"
-                >
-                  Nicolo Bianchino
-                </a>
-              </p>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05, x: -10 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
-              <p className="font-semibold mb-3 text-2xl text-[#181619]">Supplemental Motion</p>
-              <p className="text-xl text-[#181619]">
-                <a
-                  href="https://www.codymarian.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-[#ca9215] transition-colors"
-                >
-                  Cody Turple
-                </a>
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Footer */}
       <Footer />
     </main>

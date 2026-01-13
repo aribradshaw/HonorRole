@@ -7,6 +7,7 @@ import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 import { films } from "@/data/films";
 import { useCallback, useState } from "react";
+import { FaInstagram } from "react-icons/fa";
 
 export default function WorkPage() {
   const projects = films;
@@ -129,14 +130,28 @@ export default function WorkPage() {
                 </div>
               </div>
               <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
-                <h2 className="text-4xl md:text-5xl font-bold text-[#181619] mb-4">
-                  {project.title}
-                </h2>
+                <div className="flex items-start gap-4 mb-4">
+                  <h2 className="text-4xl md:text-5xl font-bold text-[#181619]">
+                    {project.title}
+                  </h2>
+
+                  {project.instagram && (
+                    <Link
+                      href={project.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} on Instagram`}
+                      className="mt-2 text-[#181619]/70 hover:text-[#ca9215] transition-colors"
+                    >
+                      <FaInstagram className="text-3xl md:text-4xl" aria-hidden="true" />
+                    </Link>
+                  )}
+                </div>
                 <p className="text-xl text-[#ca9215] mb-4 font-semibold">{project.status}</p>
                 <p className="text-lg text-[#181619] mb-6">{project.description}</p>
                 <div className="flex flex-wrap gap-4">
                   {project.links
-                    .filter((link) => link.type !== "imdb")
+                    .filter((link) => link.type !== "imdb" && link.type !== "instagram")
                     .map((link) => (
                     <Link
                       key={link.label}

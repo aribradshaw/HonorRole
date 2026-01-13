@@ -9,16 +9,28 @@ export default function PressPage() {
 
   const articles = [
     {
-      title: "Camila Mendes & Rachel Matthews Launch Production Company Honor Role",
-      publication: "DEADLINE",
-      date: "June 3, 2024",
-      href: "https://deadline.com/2024/06/camila-mendes-rachel-matthews-honor-role-1235958128/"
-    },
-    {
       title: "How Camila Mendes and Rachel Matthews Turned an NYU Meet-Cute Into a Production Company",
       publication: "INTERVIEW MAG",
       date: "March 21, 2025",
       href: "https://www.interviewmagazine.com/film/how-camila-mendes-and-rachel-matthews-turned-an-nyu-meet-cute-into-a-production-company"
+    },
+    {
+      title: "How Camila Mendes Proved to Herself and Others ‘I Actually Really Know What I’m Talking About’",
+      publication: "INDIEWIRE",
+      date: "June 12, 2024",
+      href: "https://www.indiewire.com/awards/consider-this/camila-mendes-interview-musica-upgraded-tv-movie-emmy-1235015581/"
+    },
+    {
+      title: "‘Riverdale’ star Camila Mendes and Rachel Matthews launch production company Honor Role",
+      publication: "NEWSBYTES",
+      date: "June 4, 2024",
+      href: "https://www.newsbytesapp.com/news/entertainment/camila-mendes-enters-production-domain-launches-honor-role/story"
+    },
+    {
+      title: "Camila Mendes & Rachel Matthews Launch Production Company Honor Role",
+      publication: "DEADLINE",
+      date: "June 3, 2024",
+      href: "https://deadline.com/2024/06/camila-mendes-rachel-matthews-honor-role-1235958128/"
     }
   ];
 

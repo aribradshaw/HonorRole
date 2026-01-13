@@ -131,7 +131,8 @@ export default function Home() {
   return (
     <main className="min-h-screen text-[#181619] overflow-x-hidden relative bg-transparent">
       {/* Fixed hero video background (pinned) */}
-      <div className="fixed inset-0 z-0 bg-[#181619]">
+      {/* Mobile: shorter hero area to avoid cropping; Desktop: full-screen as before */}
+      <div className="fixed top-0 left-0 right-0 h-[65vh] md:inset-0 md:h-full z-0 bg-[#181619]">
         <video
           ref={videoRef}
           autoPlay
@@ -139,7 +140,7 @@ export default function Home() {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain md:object-cover"
           style={{ minWidth: '100%', minHeight: '100%', backgroundColor: '#181619' }}
           onError={(e) => {
             const video = e.currentTarget;

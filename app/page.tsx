@@ -227,7 +227,7 @@ export default function Home() {
                   <p className="text-xl md:text-2xl leading-relaxed text-[#181619]">
                     Our first film,{" "}
                     <motion.a
-                      href="https://tribecafilm.com/films/griffin-in-summer-2024"
+                      href="https://www.imdb.com/title/tt28569819/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:text-[#729bd9] transition-colors font-semibold"
@@ -237,7 +237,7 @@ export default function Home() {
                     </motion.a>
                     , premiered at the{" "}
                     <motion.a
-                      href="https://tribecafilm.com/"
+                      href="https://tribecafilm.com/films/griffin-in-summer-2024"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline hover:text-[#729bd9] transition-colors font-semibold"

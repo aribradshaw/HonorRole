@@ -7,7 +7,7 @@ import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 import { films } from "@/data/films";
 import { FaInstagram } from "react-icons/fa";
-import { FaApple, FaPlay, FaTv } from "react-icons/fa";
+import { FaApple, FaPlay } from "react-icons/fa";
 
 export default function WorkPage() {
   const projects = films;
@@ -130,7 +130,16 @@ export default function WorkPage() {
                     >
                       <span className="inline-flex items-center gap-2">
                         {link.type === "apple-tv" && <FaApple aria-hidden="true" />}
-                        {link.type === "hulu" && <FaTv aria-hidden="true" />}
+                        {link.type === "hulu" && (
+                          <Image
+                            src="/logofiles/Hulu_logo_(2018).svg"
+                            alt="Hulu"
+                            width={48}
+                            height={18}
+                            className="h-4 w-auto"
+                            style={{ filter: "brightness(0) invert(1)" }}
+                          />
+                        )}
                         <span>{link.label}</span>
                       </span>
                     </Link>

@@ -22,6 +22,7 @@ export interface Film {
   image: string;
   images?: string[]; // Additional images/photos
   imdbLink?: string;
+  trailerYouTubeUrl?: string;
   instagram?: string;
   synopsis?: string;
 }
@@ -62,6 +63,7 @@ export const films: Film[] = [
     ],
     image: "/films/griffininsummer.jpg",
     imdbLink: "https://www.imdb.com/title/tt28569819/",
+    trailerYouTubeUrl: "https://www.youtube.com/watch?v=rqB0PrvUs0M&pp=ygURZ3JpZmZpbiBpbiBzdW1tZXI%3D",
     instagram: "https://www.instagram.com/griffininsummerfilm/?hl=en",
     synopsis: "Griffin Nafly (Everett Blunck) is the most ambitious playwright of his generation. He's also fourteen years old and living with his parents in a humdrum suburb while dreaming of moving to New York City. When his mom (Melanie Lynskey) hires a handsome 25-year-old handyman (Owen Teague), Griffin's life and his new play take an inspired turn. Also starring Kathryn Newton and Abby Ryder Fortson."
   },

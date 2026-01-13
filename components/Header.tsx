@@ -79,15 +79,12 @@ export default function Header({
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-        scrolledPastHero 
-          ? 'bg-transparent backdrop-blur-md border-b border-[#181619]/10' 
+        scrolledPastHero
+          ? 'bg-transparent border-b-0 md:backdrop-blur-md md:border-b md:border-[#181619]/10'
           : 'bg-transparent border-b-0'
       }`}
-      style={{
-        backdropFilter: scrolledPastHero ? 'blur(12px)' : 'none',
-      }}
     >
-      <nav className="w-full px-8 py-6 flex items-center justify-between relative">
+      <nav className="w-full px-4 py-4 md:px-8 md:py-6 flex items-center justify-end md:justify-between relative">
         {/* Logo */}
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -98,7 +95,7 @@ export default function Header({
             x: scrolledPastHero ? 0 : -20
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={scrolledPastHero ? 'block' : 'pointer-events-none'}
+          className={`hidden md:block ${scrolledPastHero ? 'md:block' : 'pointer-events-none'}`}
         >
           <Link href="/" className="block relative">
             {/* Black logo (base layer) */}
@@ -297,7 +294,9 @@ export default function Header({
         <div className="md:hidden">
           <button
             onClick={() => setOpen(!isOpen)}
-            className={`${overFooter ? "text-white" : "text-white"} hover:text-[#ffbb71] transition-colors z-10 relative`}
+            className={`${
+              scrolledPastHero ? (overFooter ? "text-white" : "text-[#181619]") : "text-white"
+            } hover:text-[#ffbb71] transition-colors z-10 relative`}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >

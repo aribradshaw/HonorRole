@@ -19,7 +19,7 @@ export interface Film {
   director?: string;
   cast?: CastMember[];
   links: FilmLink[];
-  image: string;
+  image?: string;
   images?: string[]; // Additional images/photos
   imdbLink?: string;
   trailerYouTubeUrl?: string;
@@ -89,7 +89,6 @@ export const films: Film[] = [
     status: "In Post-Production",
     description: "Currently in post-production",
     links: [],
-    image: "/15d34f62a49472ddeede119e708fe0dcc3e6e438-1280x816.jpg"
   }
 ];
 

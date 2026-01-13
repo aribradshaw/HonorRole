@@ -12,6 +12,7 @@ import { FaInstagram } from "react-icons/fa";
 export default function WorkPage() {
   const projects = films;
   const [playingTrailerForTitle, setPlayingTrailerForTitle] = useState<string | null>(null);
+  const placeholderVideoSrc = "/honorrolehero.mp4";
 
   const getYouTubeEmbedUrl = useCallback((url: string) => {
     try {
@@ -89,13 +90,26 @@ export default function WorkPage() {
                       />
                     ) : (
                       <>
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover"
-                        />
+                        {project.image ? (
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                            className="absolute inset-0 h-full w-full object-cover"
+                          >
+                            <source src={placeholderVideoSrc} type="video/mp4" />
+                          </video>
+                        )}
 
                         {project.trailerYouTubeUrl && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-colors">

@@ -17,7 +17,7 @@ export default function WorkPage() {
         { label: "Stream on Hulu", href: "https://www.hulu.com" },
         { label: "Instagram", href: "https://www.instagram.com/honorrole/" }
       ],
-      image: "/421ba27c47b8b31a9860ee506e460070512aeff1-2880x1620.jpg"
+      image: "/films/griffininsummer.jpg"
     },
     {
       title: "Idiotka",
@@ -26,7 +26,7 @@ export default function WorkPage() {
       links: [
         { label: "Instagram", href: "https://www.instagram.com/honorrole/" }
       ],
-      image: "/ad80c19ac168a8c87633606f7e2966fcb94d8606-4320x2238.jpg"
+      image: "/films/idiotka.jpg"
     },
     {
       title: "DED",

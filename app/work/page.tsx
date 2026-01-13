@@ -135,20 +135,18 @@ export default function WorkPage() {
                       }
                       className="px-6 py-3 bg-[#181619] text-white hover:bg-[#ca9215] transition-colors rounded-custom"
                     >
-                      <span className="inline-flex items-center gap-2">
+                      <span className="inline-flex items-center gap-2 leading-none">
                         {link.type === "apple-tv" && (
                           <>
-                            <FaApple aria-hidden="true" />
-                            <span>TV</span>
+                            <FaApple className="text-lg" aria-hidden="true" />
+                            <span className="text-base font-semibold tracking-wide">TV</span>
                           </>
                         )}
                         {link.type === "hulu" && (
-                          <Image
+                          <img
                             src="/logofiles/Hulu_logo_(2018).svg"
                             alt="Hulu"
-                            width={48}
-                            height={18}
-                            className="h-4 w-auto rounded-none"
+                            className="h-4 w-auto"
                             style={{ filter: "brightness(0) invert(1)", borderRadius: 0 }}
                           />
                         )}

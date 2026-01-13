@@ -33,7 +33,7 @@ export default function WorkPage() {
       status: "In Post-Production",
       description: "Currently in post-production",
       links: [],
-      image: "/c5edfa76e92c27af339b899f3169797c8878efcd-1124x1620.jpg"
+      image: "/15d34f62a49472ddeede119e708fe0dcc3e6e438-1280x816.jpg"
     }
   ];
 

@@ -5,37 +5,10 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
+import { films } from "@/data/films";
 
 export default function WorkPage() {
-  const projects = [
-    {
-      title: "Griffin in Summer",
-      status: "Released",
-      description: "Watch on Apple TV and stream on Hulu",
-      links: [
-        { label: "Watch on Apple TV", href: "https://tv.apple.com" },
-        { label: "Stream on Hulu", href: "https://www.hulu.com" },
-        { label: "Instagram", href: "https://www.instagram.com/honorrole/" }
-      ],
-      image: "/films/griffininsummer.jpg"
-    },
-    {
-      title: "Idiotka",
-      status: "Releases in theaters February 2026",
-      description: "Coming soon to theaters",
-      links: [
-        { label: "Instagram", href: "https://www.instagram.com/honorrole/" }
-      ],
-      image: "/films/idiotka.jpg"
-    },
-    {
-      title: "DED",
-      status: "In Post-Production",
-      description: "Currently in post-production",
-      links: [],
-      image: "/15d34f62a49472ddeede119e708fe0dcc3e6e438-1280x816.jpg"
-    }
-  ];
+  const projects = films;
 
   return (
     <CloudHeroLayout
@@ -64,13 +37,34 @@ export default function WorkPage() {
               className="grid md:grid-cols-2 gap-12 items-center"
             >
               <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={800}
-                  height={600}
-                  className="w-full h-auto rounded-custom-lg"
-                />
+                <div className="relative">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto rounded-custom-lg"
+                  />
+
+                  {project.imdbLink && (
+                    <Link
+                      href={project.imdbLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} on IMDb`}
+                      className="absolute top-4 right-4 rounded-md bg-white/90 backdrop-blur-sm p-2 shadow-lg hover:bg-white transition-colors"
+                    >
+                      <Image
+                        src="/logofiles/IMDB_Logo_2016.svg"
+                        alt="IMDb"
+                        width={64}
+                        height={32}
+                        className="h-6 w-auto"
+                        priority={false}
+                      />
+                    </Link>
+                  )}
+                </div>
               </div>
               <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                 <h2 className="text-4xl md:text-5xl font-bold text-[#181619] mb-4">
@@ -79,7 +73,9 @@ export default function WorkPage() {
                 <p className="text-xl text-[#ca9215] mb-4 font-semibold">{project.status}</p>
                 <p className="text-lg text-[#181619] mb-6">{project.description}</p>
                 <div className="flex flex-wrap gap-4">
-                  {project.links.map((link) => (
+                  {project.links
+                    .filter((link) => link.type !== "imdb")
+                    .map((link) => (
                     <Link
                       key={link.label}
                       href={link.href}

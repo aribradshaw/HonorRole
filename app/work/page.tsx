@@ -136,8 +136,8 @@ export default function WorkPage() {
                             alt="Hulu"
                             width={48}
                             height={18}
-                            className="h-4 w-auto"
-                            style={{ filter: "brightness(0) invert(1)" }}
+                            className="h-4 w-auto rounded-none"
+                            style={{ filter: "brightness(0) invert(1)", borderRadius: 0 }}
                           />
                         )}
                         <span>{link.label}</span>

@@ -85,7 +85,7 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-2xl">Contact</h3>
             <a
               href="mailto:hi@honorrole.com"
-              className="inline-flex items-center gap-4 text-2xl underline hover:text-[#ffbb71] transition-colors"
+              className="inline-flex items-center gap-4 text-2xl hover:text-[#ffbb71] transition-colors hover:underline"
               aria-label="Email Honor Role"
             >
               <FiMail className="text-3xl flex-shrink-0" aria-hidden="true" />
@@ -102,7 +102,7 @@ export default function Footer() {
                 href="https://www.instagram.com/honorrole/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-4 text-2xl underline hover:text-[#ffbb71] transition-colors"
+                className="inline-flex items-center gap-4 text-2xl hover:text-[#ffbb71] transition-colors hover:underline"
                 aria-label="Honor Role on Instagram"
               >
                 <FaInstagram className="text-3xl flex-shrink-0" aria-hidden="true" />
@@ -123,21 +123,21 @@ export default function Footer() {
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3">
               <Link 
                 href="/privacy-policy" 
-                className="hover:text-[#ffbb71] transition-colors underline"
+                className="hover:text-[#ffbb71] transition-colors hover:underline"
               >
                 PRIVACY POLICY
               </Link>
               <span className="text-[#fce2ef]/40">|</span>
               <Link 
                 href="/terms-and-conditions" 
-                className="hover:text-[#ffbb71] transition-colors underline"
+                className="hover:text-[#ffbb71] transition-colors hover:underline"
               >
                 TERMS & CONDITIONS
               </Link>
               <span className="text-[#fce2ef]/40">|</span>
               <Link 
                 href="/california-privacy-rights" 
-                className="hover:text-[#ffbb71] transition-colors underline"
+                className="hover:text-[#ffbb71] transition-colors hover:underline"
               >
                 CALIFORNIA PRIVACY RIGHTS
               </Link>
@@ -146,7 +146,7 @@ export default function Footer() {
                 href="/sitemap.xml" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#ffbb71] transition-colors underline"
+                className="hover:text-[#ffbb71] transition-colors hover:underline"
               >
                 SITEMAP
               </Link>

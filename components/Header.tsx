@@ -25,7 +25,7 @@ export default function Header({
 
   const navItems = useMemo(
     () => [
-      { label: "About", href: "/#about" },
+      { label: "Home", href: "/" },
       { label: "Work", href: "/work" },
       { label: "Merch", href: "/merch" },
       { label: "Press", href: "/press" },
@@ -184,11 +184,11 @@ export default function Header({
                   transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 >
                   <Link 
-                    href="/#about" 
+                    href="/" 
                     onClick={() => setOpen(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
                   >
-                    About
+                    Home
                   </Link>
                 </motion.div>
                 <motion.div
@@ -337,10 +337,10 @@ export default function Header({
         >
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
-              href="/#about" 
+              href="/" 
               className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
-              About
+              Home
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

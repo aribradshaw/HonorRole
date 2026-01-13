@@ -38,7 +38,7 @@ export default function ContactPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Email</h2>
               <a
                 href="mailto:hi@honorrole.com"
-                className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors hover:underline"
+                className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#181619] transition-colors hover:underline"
                 aria-label="Email Honor Role"
               >
                 <FiMail className="text-3xl md:text-4xl flex-shrink-0" aria-hidden="true" />
@@ -52,7 +52,7 @@ export default function ContactPage() {
                   href="https://www.instagram.com/honorrole/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors hover:underline"
+                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#181619] transition-colors hover:underline"
                   aria-label="Honor Role on Instagram"
                 >
                   <FaInstagram className="text-3xl md:text-4xl flex-shrink-0" aria-hidden="true" />
@@ -62,7 +62,7 @@ export default function ContactPage() {
                   href="https://www.imdb.com/company/co1234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#ffbb71] transition-colors hover:underline"
+                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#181619] transition-colors hover:underline"
                   aria-label="Honor Role on IMDb"
                 >
                   <Image

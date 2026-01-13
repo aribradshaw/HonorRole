@@ -161,7 +161,8 @@ export default function Header({
             initial={{ opacity: 1 }}
             animate={{ opacity: scrolledPastHero ? 0 : 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="hidden md:block relative"
+            // Anchor to top-right so it doesn't drift when the logo is hidden above the hero
+            className="hidden md:block absolute right-8 top-6"
           >
             <div className="flex items-center gap-8">
               {/* Menu items that spill out to the left */}
@@ -169,8 +170,8 @@ export default function Header({
                 className="flex items-center gap-8"
                 initial={false}
                 animate={{
-                  width: menuOpen ? 'auto' : 0,
-                  opacity: menuOpen ? 1 : 0,
+                  width: isOpen ? 'auto' : 0,
+                  opacity: isOpen ? 1 : 0,
                 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 style={{ overflow: 'hidden' }}

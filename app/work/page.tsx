@@ -6,28 +6,11 @@ import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 import { films } from "@/data/films";
-import { useCallback, useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 
 export default function WorkPage() {
   const projects = films;
-  const [playingTrailerForTitle, setPlayingTrailerForTitle] = useState<string | null>(null);
   const placeholderVideoSrc = "/honorrolehero.mp4";
-
-  const getYouTubeEmbedUrl = useCallback((url: string) => {
-    try {
-      const u = new URL(url);
-      // youtube.com/watch?v=...
-      const v = u.searchParams.get("v");
-      // youtu.be/...
-      const idFromPath = u.hostname.includes("youtu.be") ? u.pathname.replace("/", "") : null;
-      const id = v ?? idFromPath;
-      if (!id) return null;
-      return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-    } catch {
-      return null;
-    }
-  }, []);
 
   return (
     <CloudHeroLayout
@@ -57,79 +40,48 @@ export default function WorkPage() {
             >
               <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
                 <div className="relative">
-                  <div
-                    className={`relative w-full aspect-[4/3] rounded-custom-lg overflow-hidden ${
-                      project.trailerYouTubeUrl ? "cursor-pointer" : ""
-                    }`}
-                    role={project.trailerYouTubeUrl ? "button" : undefined}
-                    tabIndex={project.trailerYouTubeUrl ? 0 : undefined}
-                    aria-label={
-                      project.trailerYouTubeUrl
-                        ? `Play trailer for ${project.title}`
-                        : undefined
-                    }
-                    onClick={() => {
-                      if (!project.trailerYouTubeUrl) return;
-                      setPlayingTrailerForTitle(project.title);
-                    }}
-                    onKeyDown={(e) => {
-                      if (!project.trailerYouTubeUrl) return;
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        setPlayingTrailerForTitle(project.title);
-                      }
-                    }}
-                  >
-                    {playingTrailerForTitle === project.title && project.trailerYouTubeUrl ? (
-                      <iframe
-                        className="absolute inset-0 h-full w-full"
-                        src={getYouTubeEmbedUrl(project.trailerYouTubeUrl) ?? undefined}
-                        title={`${project.title} Trailer`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
+                  <div className="relative w-full aspect-[4/3] rounded-custom-lg overflow-hidden">
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
                       />
                     ) : (
-                      <>
-                        {project.image ? (
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            preload="metadata"
-                            className="absolute inset-0 h-full w-full object-cover"
-                          >
-                            <source src={placeholderVideoSrc} type="video/mp4" />
-                          </video>
-                        )}
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      >
+                        <source src={placeholderVideoSrc} type="video/mp4" />
+                      </video>
+                    )}
 
-                        {project.trailerYouTubeUrl && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/20 transition-colors">
-                            <div className="rounded-full bg-white/90 backdrop-blur-sm px-5 py-3 shadow-lg text-[#181619] font-semibold">
-                              Play Trailer
-                            </div>
-                          </div>
-                        )}
-                      </>
+                    {project.trailerYouTubeUrl && (
+                      <Link
+                        href={project.trailerYouTubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Watch ${project.title} trailer`}
+                        className="absolute bottom-4 left-4 inline-flex items-center rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
+                      >
+                        Watch trailer
+                      </Link>
                     )}
                   </div>
 
-                  {project.imdbLink && playingTrailerForTitle !== project.title && (
+                  {project.imdbLink && (
                     <Link
                       href={project.imdbLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on IMDb`}
                       className="absolute top-4 right-4 hover:opacity-90 transition-opacity"
-                      onClick={(e) => e.stopPropagation()}
                     >
                       <Image
                         src="/logofiles/IMDB_Logo_2016.svg"

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
+import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 
 export default function WorkPage() {
@@ -38,23 +38,19 @@ export default function WorkPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#d1d3c7]">
-      {/* Header */}
-      <Header />
-
-      {/* Hero Section */}
-      <section className="relative w-full h-screen flex items-center justify-center bg-[#181619]">
+    <CloudHeroLayout
+      hero={
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center px-4"
+          className="text-center"
         >
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">Work</h1>
-          <p className="text-xl md:text-2xl text-white/80">Our Films & Projects</p>
+          <p className="text-xl md:text-2xl text-white/85">Our Films &amp; Projects</p>
         </motion.div>
-      </section>
-
+      }
+    >
       {/* Projects Section */}
       <section className="relative w-full py-32 px-4 md:px-8">
         <div className="w-full max-w-6xl mx-auto space-y-32">
@@ -67,7 +63,7 @@ export default function WorkPage() {
               transition={{ duration: 0.8, delay: index * 0.2 }}
               className="grid md:grid-cols-2 gap-12 items-center"
             >
-              <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+              <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -76,16 +72,12 @@ export default function WorkPage() {
                   className="w-full h-auto rounded-custom-lg"
                 />
               </div>
-              <div className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+              <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                 <h2 className="text-4xl md:text-5xl font-bold text-[#181619] mb-4">
                   {project.title}
                 </h2>
-                <p className="text-xl text-[#ca9215] mb-4 font-semibold">
-                  {project.status}
-                </p>
-                <p className="text-lg text-[#181619] mb-6">
-                  {project.description}
-                </p>
+                <p className="text-xl text-[#ca9215] mb-4 font-semibold">{project.status}</p>
+                <p className="text-lg text-[#181619] mb-6">{project.description}</p>
                 <div className="flex flex-wrap gap-4">
                   {project.links.map((link) => (
                     <Link
@@ -105,8 +97,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
-    </main>
+    </CloudHeroLayout>
   );
 }

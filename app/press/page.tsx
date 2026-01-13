@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
+import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 
 export default function PressPage() {
@@ -11,35 +11,31 @@ export default function PressPage() {
     {
       title: "Camila Mendes & Rachel Matthews Launch Production Company Honor Role",
       publication: "DEADLINE",
-      date: "2024",
-      href: "https://deadline.com"
+      date: "June 3, 2024",
+      href: "https://deadline.com/2024/06/camila-mendes-rachel-matthews-honor-role-1235958128/"
     },
     {
       title: "How Camila Mendes and Rachel Matthews Turned an NYU Meet-Cute Into a Production Company",
       publication: "INTERVIEW MAG",
-      date: "2024",
-      href: "https://www.interviewmagazine.com"
+      date: "March 21, 2025",
+      href: "https://www.interviewmagazine.com/film/how-camila-mendes-and-rachel-matthews-turned-an-nyu-meet-cute-into-a-production-company"
     }
   ];
 
   return (
-    <main className="min-h-screen bg-[#d1d3c7]">
-      {/* Header */}
-      <Header />
-
-      {/* Hero Section */}
-      <section className="relative w-full h-screen flex items-center justify-center bg-[#181619]">
+    <CloudHeroLayout
+      hero={
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center px-4"
+          className="text-center"
         >
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">Press</h1>
-          <p className="text-xl md:text-2xl text-white/80">News & Features</p>
+          <p className="text-xl md:text-2xl text-white/85">News &amp; Features</p>
         </motion.div>
-      </section>
-
+      }
+    >
       {/* Articles Section */}
       <section className="relative w-full py-32 px-4 md:px-8">
         <div className="w-full max-w-4xl mx-auto space-y-16">
@@ -62,9 +58,7 @@ export default function PressPage() {
                   <span className="text-sm font-semibold text-[#ca9215] uppercase tracking-wide">
                     {article.publication}
                   </span>
-                  <span className="text-sm text-[#181619]/60 ml-4">
-                    {article.date}
-                  </span>
+                  <span className="text-sm text-[#181619]/60 ml-4">{article.date}</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-4 group-hover:text-[#ca9215] transition-colors">
                   {article.title}
@@ -78,8 +72,7 @@ export default function PressPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
-    </main>
+    </CloudHeroLayout>
   );
 }

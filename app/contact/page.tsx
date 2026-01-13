@@ -2,29 +2,25 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
+import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 
 export default function ContactPage() {
 
   return (
-    <main className="min-h-screen bg-[#d1d3c7]">
-      {/* Header */}
-      <Header />
-
-      {/* Hero Section */}
-      <section className="relative w-full h-screen flex items-center justify-center bg-[#181619]">
+    <CloudHeroLayout
+      hero={
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center px-4"
+          className="text-center"
         >
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">Contact</h1>
-          <p className="text-xl md:text-2xl text-white/80">Get in touch</p>
+          <p className="text-xl md:text-2xl text-white/85">Get in touch</p>
         </motion.div>
-      </section>
-
+      }
+    >
       {/* Contact Section */}
       <section className="relative w-full py-32 px-4 md:px-8">
         <div className="w-full max-w-4xl mx-auto">
@@ -35,10 +31,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8 }}
             className="grid md:grid-cols-2 gap-16"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
               <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Email</h2>
               <a
                 href="mailto:hi@honorrole.com"
@@ -47,10 +40,7 @@ export default function ContactPage() {
                 hi@honorrole.com
               </a>
             </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
               <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Follow</h2>
               <div className="space-y-4">
                 <a
@@ -75,8 +65,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
-    </main>
+    </CloudHeroLayout>
   );
 }

@@ -164,7 +164,7 @@ export default function Header({
                   transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 >
                   <Link 
-                    href="#about" 
+                    href="/#about" 
                     onClick={() => setMenuOpen?.(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
                   >

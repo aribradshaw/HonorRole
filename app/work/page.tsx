@@ -7,6 +7,7 @@ import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 import { films } from "@/data/films";
 import { FaInstagram } from "react-icons/fa";
+import { FaApple, FaPlay, FaTv } from "react-icons/fa";
 
 export default function WorkPage() {
   const projects = films;
@@ -68,9 +69,10 @@ export default function WorkPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Watch ${project.title} trailer`}
-                        className="absolute bottom-4 left-4 inline-flex items-center rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
+                        className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
                       >
-                        Watch trailer
+                        <FaPlay className="text-sm" aria-hidden="true" />
+                        <span>Watch trailer</span>
                       </Link>
                     )}
                   </div>
@@ -126,7 +128,11 @@ export default function WorkPage() {
                       rel="noopener noreferrer"
                       className="px-6 py-3 bg-[#181619] text-white hover:bg-[#ca9215] transition-colors rounded-custom"
                     >
-                      {link.label}
+                      <span className="inline-flex items-center gap-2">
+                        {link.type === "apple-tv" && <FaApple aria-hidden="true" />}
+                        {link.type === "hulu" && <FaTv aria-hidden="true" />}
+                        <span>{link.label}</span>
+                      </span>
                     </Link>
                   ))}
                 </div>

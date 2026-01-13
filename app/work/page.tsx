@@ -71,7 +71,7 @@ export default function WorkPage() {
                         aria-label={`Watch ${project.title} trailer`}
                         className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
                       >
-                        <FaPlay className="text-sm" aria-hidden="true" />
+                        <FaPlay className="text-sm rounded-none" style={{ borderRadius: 0 }} aria-hidden="true" />
                         <span>Watch trailer</span>
                       </Link>
                     )}

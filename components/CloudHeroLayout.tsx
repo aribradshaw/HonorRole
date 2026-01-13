@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 
 type CloudHeroLayoutProps = {
@@ -11,15 +11,20 @@ type CloudHeroLayoutProps = {
 export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps) {
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const heroRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight = window.innerHeight;
+      const heroHeight = heroRef.current?.getBoundingClientRect().height ?? window.innerHeight;
       setScrolledPastHero(window.scrollY > heroHeight);
     };
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   return (
@@ -39,7 +44,10 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
         />
 
         {/* Hero content lives over the fixed background */}
-        <section className="relative w-full h-screen flex items-center justify-center px-4">
+        <section
+          ref={heroRef}
+          className="relative w-full h-[55vh] md:h-screen flex items-center justify-center px-4"
+        >
           {hero}
         </section>
 

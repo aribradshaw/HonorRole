@@ -131,37 +131,9 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#d1d3c7] text-[#181619] overflow-x-hidden">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <motion.div
-          className="absolute w-96 h-96 bg-[#a6bef6] opacity-20 rounded-full blur-3xl"
-          animate={{
-            x: mousePosition.x / 10,
-            y: mousePosition.y / 10,
-          }}
-          transition={{ type: "spring", stiffness: 50 }}
-        />
-        <motion.div
-          className="absolute w-96 h-96 bg-[#ffbb71] opacity-20 rounded-full blur-3xl right-0 bottom-0"
-          animate={{
-            x: -mousePosition.x / 15,
-            y: -mousePosition.y / 15,
-          }}
-          transition={{ type: "spring", stiffness: 50 }}
-        />
-      </div>
-
-      {/* Header */}
-      <Header 
-        showHamburger={true}
-        scrolledPastHero={scrolledPastHero}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-      />
-
-      {/* Hero Section - Video */}
-      <section className="relative w-full h-screen overflow-hidden bg-[#181619]">
+    <main className="min-h-screen text-[#181619] overflow-x-hidden relative bg-transparent">
+      {/* Fixed hero video background (pinned) */}
+      <div className="fixed inset-0 z-0 bg-[#181619]">
         <video
           ref={videoRef}
           autoPlay
@@ -194,10 +166,45 @@ export default function Home() {
           <source src="/honorrolehero.mp4" type="video/mp4" />
           <p>Your browser does not support the video tag. Video source: /honorrolehero.mp4</p>
         </video>
-      </section>
+        {/* Subtle dark overlay for legibility */}
+        <div className="absolute inset-0 bg-[#181619]/20" />
+      </div>
 
-      {/* About Section */}
-      <section id="about" className="relative w-full py-32 px-4 md:px-8">
+      {/* Animated background elements */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <motion.div
+          className="absolute w-96 h-96 bg-[#a6bef6] opacity-20 rounded-full blur-3xl"
+          animate={{
+            x: mousePosition.x / 10,
+            y: mousePosition.y / 10,
+          }}
+          transition={{ type: "spring", stiffness: 50 }}
+        />
+        <motion.div
+          className="absolute w-96 h-96 bg-[#ffbb71] opacity-20 rounded-full blur-3xl right-0 bottom-0"
+          animate={{
+            x: -mousePosition.x / 15,
+            y: -mousePosition.y / 15,
+          }}
+          transition={{ type: "spring", stiffness: 50 }}
+        />
+      </div>
+
+      <div className="relative z-10">
+        {/* Header */}
+        <Header 
+          showHamburger={true}
+          scrolledPastHero={scrolledPastHero}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
+
+        {/* Hero spacer (keeps the fixed video as the hero) */}
+        <section className="w-full h-screen" aria-label="Hero" />
+
+        <div className="bg-[#d1d3c7]">
+          {/* About Section */}
+          <section id="about" className="relative w-full py-32 px-4 md:px-8">
         <div className="w-full max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -235,7 +242,7 @@ export default function Home() {
             </p>
           </motion.div>
         </div>
-      </section>
+          </section>
 
       {/* Brand Identity Section */}
       <section id="work" className="relative w-full py-32 px-4 md:px-8">
@@ -334,6 +341,8 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+        </div>
+      </div>
     </main>
   );
 }

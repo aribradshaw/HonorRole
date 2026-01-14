@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 interface HeaderProps {
@@ -259,7 +259,7 @@ export default function Header({
               </motion.div>
               
               {/* Hamburger/X button */}
-              <div className="relative h-[60px] w-[60px]">
+              <div className="relative h-[60px] w-[60px] md:h-[72px] md:w-[72px]">
                 {showPulse && !isOpen && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -277,7 +277,7 @@ export default function Header({
                     className="absolute inset-0 flex items-center justify-center pointer-events-none hidden md:flex"
                   >
                     <div
-                      className="h-[60px] w-[60px] rounded-full border-2"
+                      className="h-[60px] w-[60px] md:h-[72px] md:w-[72px] rounded-full border-2"
                       style={{
                         borderColor: '#ffbb71',
                         boxShadow: '0 0 20px rgba(255, 187, 113, 0.5)'
@@ -287,7 +287,7 @@ export default function Header({
                 )}
                 <button 
                   onClick={() => setOpen(!isOpen)}
-                  className="absolute inset-0 flex items-center justify-center text-white hover:text-[#ffbb71] transition-colors"
+                  className="absolute inset-0 flex items-center justify-center text-white hover:text-[#ffbb71] transition-colors md:scale-125"
                   aria-label={isOpen ? "Close menu" : "Open menu"}
                   aria-expanded={isOpen}
                 >
@@ -411,22 +411,46 @@ export default function Header({
       </nav>
 
       {/* Mobile vertical menu panel */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#181619]/90 backdrop-blur-md border-t border-white/10">
-          <div className="px-8 py-6 flex flex-col gap-5">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="text-white text-xl font-semibold tracking-wide hover:text-[#ffbb71] transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden absolute top-full right-0 mt-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="px-2 pt-0 pb-1 flex flex-col gap-1 items-end text-right">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: index * 0.05, duration: 0.2 }
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -10,
+                    transition: {
+                      delay: (navItems.length - 1 - index) * 0.05,
+                      duration: 0.2
+                    }
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="text-white text-base font-normal tracking-wide transition-colors px-2 py-1 rounded-md hover:bg-black/30"
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

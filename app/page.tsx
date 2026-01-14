@@ -92,14 +92,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="mb-6 md:mb-8"
+            className="-mt-10 mb-2 md:mt-0 md:mb-8"
           >
             <Image
               src="/logofiles/HR_Wordmark_Gold_Glow_v3.avif"
               alt="Honor Role"
               width={900}
               height={300}
-              className="w-full max-w-[95vw] md:max-w-[900px] h-auto -mb-24 md:-mb-24"
+              className="w-full max-w-[90vw] sm:max-w-[75vw] md:max-w-[900px] h-auto -mb-2 sm:-mb-16 md:-mb-24 scale-[1.5] sm:scale-100 origin-center"
               priority
             />
           </motion.div>
@@ -111,7 +111,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.5 }}
             className="mb-12 md:mb-16 text-center"
           >
-            <p className="text-white/90 text-sm md:text-base tracking-wider uppercase font-semibold leading-relaxed">
+            <p className="text-white/90 text-[11px] sm:text-xs md:text-base tracking-wider uppercase font-semibold leading-snug sm:leading-relaxed">
               A PRODUCTION COMPANY CO-FOUNDED
               <br />
               BY CAMILA MENDES AND RACHEL MATTHEWS

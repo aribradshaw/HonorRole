@@ -11,6 +11,7 @@ interface HeaderProps {
   menuOpen?: boolean;
   setMenuOpen?: (open: boolean) => void;
   showPulse?: boolean;
+  disableScrollTransition?: boolean;
 }
 
 export default function Header({ 
@@ -18,16 +19,19 @@ export default function Header({
   scrolledPastHero = true,
   menuOpen = false,
   setMenuOpen,
-  showPulse = false
+  showPulse = false,
+  disableScrollTransition = false
 }: HeaderProps) {
   const [overFooter, setOverFooter] = useState(false);
   const [logoOpacity, setLogoOpacity] = useState(0);
   const footerRef = useRef<HTMLElement | null>(null);
   const [internalMenuOpen, setInternalMenuOpen] = useState(false);
+  const effectiveScrolledPastHero = disableScrollTransition ? false : scrolledPastHero;
 
   const navItems = useMemo(
     () => [
       { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
       { label: "Work", href: "/work" },
       { label: "Merch", href: "/merch" },
       { label: "Press", href: "/press" },
@@ -82,7 +86,7 @@ export default function Header({
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-        scrolledPastHero
+        effectiveScrolledPastHero
           ? 'bg-transparent border-b-0 md:backdrop-blur-md md:border-b md:border-[#181619]/10'
           : 'bg-transparent border-b-0'
       }`}
@@ -94,11 +98,11 @@ export default function Header({
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, x: -20 }}
           animate={{ 
-            opacity: scrolledPastHero ? 1 : 0,
-            x: scrolledPastHero ? 0 : -20
+            opacity: effectiveScrolledPastHero ? 1 : 0,
+            x: effectiveScrolledPastHero ? 0 : -20
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={`hidden md:block ${scrolledPastHero ? 'md:block' : 'pointer-events-none'}`}
+          className={`hidden md:block ${effectiveScrolledPastHero ? 'md:block' : 'pointer-events-none'}`}
         >
           <Link href="/" className="block relative">
             {/* Black logo (base layer) */}
@@ -156,10 +160,10 @@ export default function Header({
 
         {/* Hamburger menu - only on homepage when above hero */}
         {/* Desktop-only hamburger (existing behavior) */}
-        {showHamburger && !scrolledPastHero && (
+        {showHamburger && !effectiveScrolledPastHero && (
           <motion.div
             initial={{ opacity: 1 }}
-            animate={{ opacity: scrolledPastHero ? 0 : 1 }}
+            animate={{ opacity: effectiveScrolledPastHero ? 0 : 1 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             // Anchor to top-right so it doesn't drift when the logo is hidden above the hero
             className="hidden md:block absolute right-8 top-6"
@@ -201,6 +205,22 @@ export default function Header({
                   transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
                 >
                   <Link 
+                    href="/about" 
+                    onClick={() => setOpen(false)}
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                  >
+                    About
+                  </Link>
+                </motion.div>
+                <motion.div
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ 
+                    x: isOpen ? 0 : 20,
+                    opacity: isOpen ? 1 : 0
+                  }}
+                  transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+                >
+                  <Link 
                     href="/work" 
                     onClick={() => setOpen(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
@@ -214,7 +234,7 @@ export default function Header({
                     x: isOpen ? 0 : 20,
                     opacity: isOpen ? 1 : 0
                   }}
-                  transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
                 >
                   <Link 
                     href="/merch" 
@@ -230,7 +250,7 @@ export default function Header({
                     x: isOpen ? 0 : 20,
                     opacity: isOpen ? 1 : 0
                   }}
-                  transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
                 >
                   <Link 
                     href="/press" 
@@ -246,7 +266,7 @@ export default function Header({
                     x: isOpen ? 0 : 20,
                     opacity: isOpen ? 1 : 0
                   }}
-                  transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
                 >
                   <Link 
                     href="/contact" 
@@ -327,7 +347,7 @@ export default function Header({
           <button
             onClick={() => setOpen(!isOpen)}
             className={`${
-              scrolledPastHero ? (overFooter ? "text-white" : "text-[#181619]") : "text-white"
+              effectiveScrolledPastHero ? (overFooter ? "text-white" : "text-[#181619]") : "text-white"
             } hover:text-[#ffbb71] transition-colors z-10 relative`}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -363,9 +383,9 @@ export default function Header({
         {/* Navigation links - shown after scrolling past hero or always on other pages */}
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: scrolledPastHero ? 1 : 0 }}
+          animate={{ opacity: effectiveScrolledPastHero ? 1 : 0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className={`hidden md:flex items-center gap-8 text-sm ${scrolledPastHero ? 'md:flex' : 'hidden pointer-events-none'}`}
+          className={`hidden md:flex items-center gap-8 text-sm ${effectiveScrolledPastHero ? 'md:flex' : 'hidden pointer-events-none'}`}
         >
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
@@ -373,6 +393,14 @@ export default function Header({
               className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               Home
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <Link 
+              href="/about" 
+              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+            >
+              About
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

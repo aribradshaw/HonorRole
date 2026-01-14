@@ -82,13 +82,13 @@ export default function Footer() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 200 }}
           >
-            <h3 className="font-semibold mb-4 text-2xl">Contact</h3>
+            <h3 className="font-semibold mb-3 text-xl">Contact</h3>
             <a
               href="mailto:hi@honorrole.com"
-              className="inline-flex items-center gap-4 text-2xl hover:text-[#ffbb71] transition-colors hover:underline"
+              className="inline-flex items-center gap-3 text-xl hover:text-[#ffbb71] transition-colors hover:underline"
               aria-label="Email Honor Role"
             >
-              <FiMail className="text-3xl flex-shrink-0" aria-hidden="true" />
+              <FiMail className="text-2xl flex-shrink-0" aria-hidden="true" />
               <span>hi@honorrole.com</span>
             </a>
           </motion.div>
@@ -96,16 +96,16 @@ export default function Footer() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 200 }}
           >
-            <h3 className="font-semibold mb-4 text-2xl">Follow</h3>
+            <h3 className="font-semibold mb-3 text-xl">Follow</h3>
             <div className="flex flex-wrap items-center gap-6">
               <a
                 href="https://www.instagram.com/honorrole/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-4 text-2xl hover:text-[#ffbb71] transition-colors hover:underline"
+                className="inline-flex items-center gap-3 text-xl hover:text-[#ffbb71] transition-colors hover:underline"
                 aria-label="Honor Role on Instagram"
               >
-                <FaInstagram className="text-3xl flex-shrink-0" aria-hidden="true" />
+                <FaInstagram className="text-2xl flex-shrink-0" aria-hidden="true" />
                 <span>@honorrole</span>
               </a>
             </div>

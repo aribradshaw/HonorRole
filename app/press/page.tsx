@@ -58,7 +58,7 @@ export default function PressPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="border-b border-[#181619]/20 pb-12 last:border-b-0"
+              className="border-b border-white/20 pb-12 last:border-b-0"
             >
               <Link
                 href={article.href}
@@ -67,15 +67,15 @@ export default function PressPage() {
                 className="block group"
               >
                 <div className="mb-4">
-                  <span className="text-sm font-semibold text-[#ca9215] uppercase tracking-wide">
+                  <span className="text-sm font-semibold text-[#ffbb71] uppercase tracking-wide">
                     {article.publication}
                   </span>
-                  <span className="text-sm text-[#181619]/60 ml-4">{article.date}</span>
+                  <span className="text-sm text-white/70 ml-4">{article.date}</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-4 group-hover:text-[#ca9215] transition-colors">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-[#ffbb71] transition-colors">
                   {article.title}
                 </h2>
-                <span className="text-lg text-[#181619] underline group-hover:text-[#ca9215] transition-colors">
+                <span className="text-lg text-white underline group-hover:text-[#ffbb71] transition-colors">
                   Read Article →
                 </span>
               </Link>

@@ -137,7 +137,7 @@ export default function Home() {
                 />
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-[#181619]/70 backdrop-blur-md border border-white/30 text-white hover:bg-[#ca9215]/80 transition-colors rounded-custom font-semibold whitespace-nowrap"
+                  className="px-8 py-4 bg-white/90 backdrop-blur-md border border-white/60 text-[#181619] hover:bg-white transition-colors rounded-custom font-light tracking-wide whitespace-nowrap"
                 >
                   {submitted ? "Subscribed!" : "Subscribe"}
                 </button>

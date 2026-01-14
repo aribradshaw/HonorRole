@@ -2,12 +2,83 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
 import { films } from "@/data/films";
 import { FaInstagram } from "react-icons/fa";
 import { FaApple, FaPlay } from "react-icons/fa";
+
+const griffinSlides = [
+  {
+    src: "/films/griffininsummer.jpg",
+    alt: "Griffin in Summer still 1",
+  },
+  {
+    src: "/films/griffininsummer2.jpg",
+    alt: "Griffin in Summer still 2",
+  },
+  {
+    src: "/films/griffininsummer3.jpg",
+    alt: "Griffin in Summer still 3",
+  },
+];
+
+function GriffinKenBurnsSlideshow() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((current) => (current + 1) % griffinSlides.length);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      {griffinSlides.map((slide, index) => {
+        const isActive = index === activeSlide;
+        return (
+          <motion.div
+            key={slide.src}
+            className="absolute inset-0"
+            initial={false}
+            animate={
+              isActive
+                ? {
+                    opacity: 1,
+                    scale: [1, 1.08],
+                    x: [0, 12],
+                    y: [0, -8],
+                  }
+                : { opacity: 0, scale: 1, x: 0, y: 0 }
+            }
+            transition={
+              isActive
+                ? {
+                    duration: 6,
+                    ease: "linear",
+                    opacity: { duration: 0.6, ease: "easeInOut" },
+                  }
+                : { duration: 0.6, ease: "easeInOut" }
+            }
+          >
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              priority={index === 0}
+            />
+          </motion.div>
+        );
+      })}
+    </>
+  );
+}
 
 export default function WorkPage() {
   const projects = films;
@@ -42,7 +113,9 @@ export default function WorkPage() {
               <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
                 <div className="relative">
                   <div className="relative w-full aspect-[4/3] rounded-custom-lg overflow-hidden">
-                    {project.image ? (
+                    {project.title === "Griffin in Summer" ? (
+                      <GriffinKenBurnsSlideshow />
+                    ) : project.image ? (
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -51,16 +124,11 @@ export default function WorkPage() {
                         className="object-cover"
                       />
                     ) : (
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="absolute inset-0 h-full w-full object-cover"
-                      >
-                        <source src={placeholderVideoSrc} type="video/mp4" />
-                      </video>
+                      <div className="absolute inset-0 flex items-center justify-center bg-[#181619]">
+                        <span className="text-[#ca9215] text-xl md:text-2xl font-semibold tracking-wide uppercase">
+                          Coming Soon
+                        </span>
+                      </div>
                     )}
 
                     {project.trailerYouTubeUrl && (
@@ -99,7 +167,7 @@ export default function WorkPage() {
               </div>
               <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                 <div className="flex items-start gap-4 mb-4">
-                  <h2 className="text-4xl md:text-5xl font-bold text-[#181619]">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white">
                     {project.title}
                   </h2>
 
@@ -109,14 +177,16 @@ export default function WorkPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on Instagram`}
-                      className="mt-2 text-[#181619]/70 hover:text-[#ca9215] transition-colors"
+                    className="mt-2 text-white/70 hover:text-[#ca9215] transition-colors"
                     >
                       <FaInstagram className="text-3xl md:text-4xl" aria-hidden="true" />
                     </Link>
                   )}
                 </div>
-                <p className="text-xl text-[#ca9215] mb-4 font-semibold">{project.status}</p>
-                <p className="text-lg text-[#181619] mb-6">{project.description}</p>
+                <p className="text-xl text-gold-2 mb-4 font-semibold">{project.status}</p>
+                {project.description && (
+                  <p className="text-lg text-white/90 mb-6">{project.description}</p>
+                )}
                 <div className="flex flex-wrap gap-4">
                   {project.links
                     .filter((link) => link.type !== "imdb" && link.type !== "instagram")
@@ -124,8 +194,14 @@ export default function WorkPage() {
                     <Link
                       key={link.label}
                       href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={link.href === "#" ? undefined : "_blank"}
+                      rel={link.href === "#" ? undefined : "noopener noreferrer"}
+                      aria-disabled={link.href === "#" ? true : undefined}
+                      onClick={
+                        link.href === "#"
+                          ? (event) => event.preventDefault()
+                          : undefined
+                      }
                       aria-label={
                         link.type === "apple-tv"
                           ? "Watch on Apple TV"

@@ -41,6 +41,7 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
           scrolledPastHero={scrolledPastHero}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          disableScrollTransition={true}
         />
 
         {/* Honor Role logo - top left, clickable */}
@@ -65,8 +66,8 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
           {hero}
         </section>
 
-        {/* Page content on paper background */}
-        <div className="bg-[#d1d3c7]">{children}</div>
+        {/* Page content stays over the video background */}
+        <div className="bg-transparent">{children}</div>
       </div>
     </main>
   );

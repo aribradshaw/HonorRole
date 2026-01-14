@@ -70,10 +70,15 @@ export const films: Film[] = [
   {
     title: "Idiotka",
     status: "Releases in theaters February 2026",
-    description: "Coming soon to theaters",
+    description: "",
     releaseYear: 2026,
     genres: ["Comedy"],
     links: [
+      {
+        label: "Buy Tickets Here (coming soon)",
+        href: "#",
+        type: "other"
+      },
       { 
         label: "Instagram", 
         href: "https://www.instagram.com/idiotkamovie/?hl=en",
@@ -87,7 +92,7 @@ export const films: Film[] = [
   {
     title: "DED",
     status: "In Post-Production",
-    description: "Currently in post-production",
+    description: "",
     links: [],
   }
 ];

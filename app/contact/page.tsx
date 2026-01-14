@@ -1,12 +1,8 @@
 'use client';
 
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
-import { FiMail } from "react-icons/fi";
-import { FaInstagram } from "react-icons/fa";
 
 export default function ContactPage() {
 
@@ -19,68 +15,59 @@ export default function ContactPage() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">Contact</h1>
-          <p className="text-xl md:text-2xl text-white/85">Get in touch</p>
+          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-[0.3em]">
+            CONTACT US
+          </h1>
+          <motion.form
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="mt-10 w-full max-w-xl mx-auto space-y-6 text-left"
+          >
+            <div>
+              <label className="block text-white text-lg mb-2" htmlFor="contact-name">
+                Name
+              </label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                className="w-full rounded-2xl bg-white/90 text-[#181619] px-4 py-3 text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
+              />
+            </div>
+            <div>
+              <label className="block text-white text-lg mb-2" htmlFor="contact-email">
+                Email <span className="text-white/70">*</span>
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                required
+                className="w-full rounded-2xl bg-white/90 text-[#181619] px-4 py-3 text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-white/60"
+              />
+            </div>
+            <div>
+              <label className="block text-white text-lg mb-2" htmlFor="contact-message">
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={5}
+                className="w-full rounded-2xl bg-white/90 text-[#181619] px-4 py-3 text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-white/60 resize-none"
+              />
+            </div>
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center rounded-2xl bg-white/90 px-8 py-3 text-[#181619] text-base md:text-lg font-light tracking-wide hover:bg-white transition-colors"
+            >
+              Send
+            </button>
+          </motion.form>
         </motion.div>
       }
     >
-      {/* Contact Section */}
-      <section className="relative w-full py-32 px-4 md:px-8">
-        <div className="w-full max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid md:grid-cols-2 gap-16"
-          >
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Email</h2>
-              <a
-                href="mailto:hi@honorrole.com"
-                className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#181619] transition-colors hover:underline"
-                aria-label="Email Honor Role"
-              >
-                <FiMail className="text-3xl md:text-4xl flex-shrink-0" aria-hidden="true" />
-                <span>hi@honorrole.com</span>
-              </a>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#181619] mb-6">Follow</h2>
-              <div className="space-y-6">
-                <a
-                  href="https://www.instagram.com/honorrole/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#181619] transition-colors hover:underline"
-                  aria-label="Honor Role on Instagram"
-                >
-                  <FaInstagram className="text-3xl md:text-4xl flex-shrink-0" aria-hidden="true" />
-                  <span>@honorrole</span>
-                </a>
-                <a
-                  href="https://www.imdb.com/company/co1234567"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 text-2xl md:text-3xl text-[#ca9215] hover:text-[#181619] transition-colors hover:underline"
-                  aria-label="Honor Role on IMDb"
-                >
-                  <Image
-                    src="/logofiles/IMDB_Logo_2016.svg"
-                    alt="IMDb"
-                    width={64}
-                    height={32}
-                    className="h-7 md:h-8 w-auto flex-shrink-0"
-                    priority={false}
-                  />
-                  <span>Honor Role</span>
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
       <Footer />
     </CloudHeroLayout>
   );

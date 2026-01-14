@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Header from "@/components/Header";
+import BoomerangCloudVideo from "@/components/BoomerangCloudVideo";
 
 type CloudHeroLayoutProps = {
   hero: React.ReactNode;
@@ -29,11 +31,8 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
 
   return (
     <main className="min-h-screen text-[#181619] overflow-x-hidden relative bg-transparent">
-      {/* Fixed cloud hero background */}
-      <div className="fixed inset-0 z-0 cloud-hero-bg">
-        {/* subtle dark overlay so white hero text + hamburger reads cleanly */}
-        <div className="absolute inset-0 bg-[#181619]/15" />
-      </div>
+      {/* Fixed cloud hero background with boomerang video */}
+      <BoomerangCloudVideo />
 
       <div className="relative z-10">
         <Header
@@ -42,6 +41,18 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
         />
+
+        {/* Honor Role logo - top right */}
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20">
+          <Image
+            src="/logofiles/HR_Wordmark_Gold_Glow_v3.avif"
+            alt="Honor Role"
+            width={200}
+            height={67}
+            className="w-auto h-8 md:h-12 opacity-90 hover:opacity-100 transition-opacity"
+            priority={false}
+          />
+        </div>
 
         {/* Hero content lives over the fixed background */}
         <section

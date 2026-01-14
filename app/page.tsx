@@ -82,40 +82,8 @@ export default function Home() {
           scrolledPastHero={scrolledPastHero}
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
+          showPulse={showPulse}
         />
-
-        {/* Pulsing circle animation around hamburger menu */}
-        {showPulse && !menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
-              opacity: [0, 1, 0],
-              scale: [0.8, 1.2, 1.4]
-            }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatDelay: 1,
-              ease: "easeInOut"
-            }}
-            className="fixed z-50 pointer-events-none hidden md:block"
-            style={{
-              width: '60px',
-              height: '60px',
-              top: '6px',
-              left: 'calc(100% - 50px)',
-            }}
-          >
-            <div
-              className="w-full h-full rounded-full border-2"
-              style={{
-                borderColor: '#ffbb71',
-                boxShadow: '0 0 20px rgba(255, 187, 113, 0.5)'
-              }}
-            />
-          </motion.div>
-        )}
 
         {/* Main content - centered vertically with equal spacing */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-20">

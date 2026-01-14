@@ -1,132 +1,139 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function BoomerangCloudVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const animationFrameRef = useRef<number | null>(null);
-  const isReversingRef = useRef(false);
+  const normalVideoRef = useRef<HTMLVideoElement>(null);
+  const reversedVideoRef = useRef<HTMLVideoElement>(null);
+  const [currentVideo, setCurrentVideo] = useState<"normal" | "reversed">("normal");
+  const blendDuration = 0.1; // 0.1 seconds blend
+  const normalBlendStartedRef = useRef(false);
+  const reversedBlendStartedRef = useRef(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Try using negative playbackRate for smooth reverse (modern browsers)
-    // Fallback to manual control if not supported
-    let supportsNegativePlaybackRate = true;
+    const normalVideo = normalVideoRef.current;
+    const reversedVideo = reversedVideoRef.current;
     
-    const checkSupport = () => {
-      try {
-        const testRate = video.playbackRate;
-        video.playbackRate = -1;
-        supportsNegativePlaybackRate = video.playbackRate === -1;
-        video.playbackRate = testRate;
-      } catch {
-        supportsNegativePlaybackRate = false;
-      }
+    if (!normalVideo || !reversedVideo) return;
+
+    // Preload both videos to ensure smooth transitions
+    normalVideo.load();
+    reversedVideo.load();
+
+    // Start with normal video once it's ready
+    const handleCanPlay = () => {
+      normalVideo.play().catch((err) => {
+        console.error("Video play failed:", err);
+      });
     };
 
-    const handleTimeUpdate = () => {
-      if (!isReversingRef.current) return;
+    if (normalVideo.readyState >= 2) {
+      // Video is already loaded
+      handleCanPlay();
+    } else {
+      normalVideo.addEventListener('canplay', handleCanPlay, { once: true });
+    }
 
-      // When reversing with negative playbackRate, check if we've reached the start
-      if (supportsNegativePlaybackRate && video.currentTime <= 0.1) {
-        isReversingRef.current = false;
-        video.playbackRate = 1;
-        video.currentTime = 0;
-        video.play().catch((err) => {
-          console.error("Video play failed:", err);
+    const handleNormalTimeUpdate = () => {
+      if (!normalVideo.duration) return;
+      
+      // Start blending 0.1s before the video ends
+      const timeUntilEnd = normalVideo.duration - normalVideo.currentTime;
+      
+      if (timeUntilEnd <= blendDuration && !normalBlendStartedRef.current && currentVideo === "normal") {
+        normalBlendStartedRef.current = true;
+        // Start the reversed video and begin crossfade
+        reversedVideo.currentTime = 0;
+        reversedVideo.play().catch((err) => {
+          console.error("Reversed video play failed:", err);
         });
+        // Start crossfade
+        setCurrentVideo("reversed");
       }
     };
 
-    const startReverse = () => {
-      if (supportsNegativePlaybackRate) {
-        // Use native negative playbackRate for smooth reverse
-        isReversingRef.current = true;
-        video.playbackRate = -1;
-        video.play().catch((err) => {
-          console.error("Video play failed:", err);
+    const handleReversedTimeUpdate = () => {
+      if (!reversedVideo.duration) return;
+      
+      // Start blending 0.1s before the video ends
+      const timeUntilEnd = reversedVideo.duration - reversedVideo.currentTime;
+      
+      if (timeUntilEnd <= blendDuration && !reversedBlendStartedRef.current && currentVideo === "reversed") {
+        reversedBlendStartedRef.current = true;
+        // Start the normal video and begin crossfade
+        normalVideo.currentTime = 0;
+        normalVideo.play().catch((err) => {
+          console.error("Normal video play failed:", err);
         });
-      } else {
-        // Fallback: smoother manual reverse with better timing
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-        }
-        isReversingRef.current = true;
-
-        let lastFrameTime = performance.now();
-        const reverse = (currentTime: number) => {
-          if (!video || !isFinite(video.duration)) {
-            animationFrameRef.current = requestAnimationFrame(reverse);
-            return;
-          }
-
-          const deltaTime = (currentTime - lastFrameTime) / 1000; // Convert to seconds
-          lastFrameTime = currentTime;
-
-          // Smooth reverse: match forward playback speed (1x)
-          const step = deltaTime; // Same speed as forward playback
-          const newTime = Math.max(0, video.currentTime - step);
-          video.currentTime = newTime;
-
-          if (newTime <= 0.01) {
-            // Reached the start, start playing forward again
-            isReversingRef.current = false;
-            video.currentTime = 0;
-            video.play().catch((err) => {
-              console.error("Video play failed:", err);
-            });
-          } else {
-            animationFrameRef.current = requestAnimationFrame(reverse);
-          }
-        };
-
-        reverse(performance.now());
+        // Start crossfade
+        setCurrentVideo("normal");
       }
     };
 
-    const handleEnded = () => {
-      // Video ended while playing forward, start reversing
-      if (!supportsNegativePlaybackRate) {
-        video.pause();
+    const handleNormalEnded = () => {
+      // Ensure we're on reversed video when normal ends
+      if (currentVideo === "normal") {
+        setCurrentVideo("reversed");
       }
-      startReverse();
+      normalBlendStartedRef.current = false;
     };
 
-    // Check if browser supports negative playbackRate
-    checkSupport();
+    const handleReversedEnded = () => {
+      // Ensure we're on normal video when reversed ends
+      if (currentVideo === "reversed") {
+        setCurrentVideo("normal");
+      }
+      reversedBlendStartedRef.current = false;
+    };
 
-    video.addEventListener("ended", handleEnded);
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    
-    // Start playing forward
-    video.playbackRate = 1;
-    video.play().catch((err) => {
-      console.error("Video play failed:", err);
-    });
+    normalVideo.addEventListener("timeupdate", handleNormalTimeUpdate);
+    reversedVideo.addEventListener("timeupdate", handleReversedTimeUpdate);
+    normalVideo.addEventListener("ended", handleNormalEnded);
+    reversedVideo.addEventListener("ended", handleReversedEnded);
 
     return () => {
-      video.removeEventListener("ended", handleEnded);
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      normalVideo.removeEventListener("timeupdate", handleNormalTimeUpdate);
+      reversedVideo.removeEventListener("timeupdate", handleReversedTimeUpdate);
+      normalVideo.removeEventListener("ended", handleNormalEnded);
+      reversedVideo.removeEventListener("ended", handleReversedEnded);
+      normalVideo.removeEventListener('canplay', handleCanPlay);
     };
-  }, []);
+  }, [currentVideo, blendDuration]);
 
   return (
     <div className="fixed inset-0 z-0 bg-[#181619]">
       <video
-        ref={videoRef}
+        ref={normalVideoRef}
         autoPlay
         muted
         playsInline
         preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ minWidth: '100%', minHeight: '100%', backgroundColor: '#181619' }}
+        className={`absolute inset-0 w-full h-full object-cover ${currentVideo === "normal" ? "opacity-100" : "opacity-0"}`}
+        style={{ 
+          minWidth: '100%', 
+          minHeight: '100%', 
+          backgroundColor: '#181619',
+          transition: 'opacity 0.1s ease-in-out',
+          pointerEvents: 'none'
+        }}
       >
         <source src="/clouds.mp4" type="video/mp4" />
+      </video>
+      <video
+        ref={reversedVideoRef}
+        muted
+        playsInline
+        preload="auto"
+        className={`absolute inset-0 w-full h-full object-cover ${currentVideo === "reversed" ? "opacity-100" : "opacity-0"}`}
+        style={{ 
+          minWidth: '100%', 
+          minHeight: '100%', 
+          backgroundColor: '#181619',
+          transition: 'opacity 0.1s ease-in-out',
+          pointerEvents: 'none'
+        }}
+      >
+        <source src="/clouds-reversed.mp4" type="video/mp4" />
       </video>
       {/* Subtle dark overlay for legibility */}
       <div className="absolute inset-0 bg-[#181619]/15" />

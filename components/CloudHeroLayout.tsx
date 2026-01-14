@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
 import BoomerangCloudVideo from "@/components/BoomerangCloudVideo";
 
@@ -42,16 +43,18 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
           setMenuOpen={setMenuOpen}
         />
 
-        {/* Honor Role logo - top right */}
-        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20">
-          <Image
-            src="/logofiles/HR_Wordmark_Gold_Glow_v3.avif"
-            alt="Honor Role"
-            width={200}
-            height={67}
-            className="w-auto h-8 md:h-12 opacity-90 hover:opacity-100 transition-opacity"
-            priority={false}
-          />
+        {/* Honor Role logo - top left, clickable */}
+        <div className="absolute top-4 left-4 md:top-6 md:left-6 z-[60] pointer-events-auto">
+          <Link href="/" className="block">
+            <Image
+              src="/logofiles/HR_Wordmark_Gold_Glow_v3.avif"
+              alt="Honor Role"
+              width={200}
+              height={67}
+              className="w-auto h-12 md:h-16 opacity-90 hover:opacity-100 transition-opacity cursor-pointer"
+              priority={false}
+            />
+          </Link>
         </div>
 
         {/* Hero content lives over the fixed background */}

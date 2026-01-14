@@ -10,13 +10,15 @@ interface HeaderProps {
   scrolledPastHero?: boolean;
   menuOpen?: boolean;
   setMenuOpen?: (open: boolean) => void;
+  showPulse?: boolean;
 }
 
 export default function Header({ 
   showHamburger = false, 
   scrolledPastHero = true,
   menuOpen = false,
-  setMenuOpen
+  setMenuOpen,
+  showPulse = false
 }: HeaderProps) {
   const [overFooter, setOverFooter] = useState(false);
   const [logoOpacity, setLogoOpacity] = useState(0);
@@ -72,6 +74,7 @@ export default function Header({
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   return (
     <motion.header
@@ -256,36 +259,65 @@ export default function Header({
               </motion.div>
               
               {/* Hamburger/X button */}
-              <button 
-                onClick={() => setOpen(!isOpen)}
-                className="text-white hover:text-[#ffbb71] transition-colors z-10 relative flex-shrink-0"
-              >
-                <motion.svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  animate={{ rotate: isOpen ? 90 : 0 }}
-                  transition={{ duration: 0.3 }}
+              <div className="relative h-[60px] w-[60px]">
+                {showPulse && !isOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ 
+                      opacity: [0, 1, 0],
+                      scale: [0.8, 1.2, 1.4]
+                    }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 1,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none hidden md:flex"
+                  >
+                    <div
+                      className="h-[60px] w-[60px] rounded-full border-2"
+                      style={{
+                        borderColor: '#ffbb71',
+                        boxShadow: '0 0 20px rgba(255, 187, 113, 0.5)'
+                      }}
+                    />
+                  </motion.div>
+                )}
+                <button 
+                  onClick={() => setOpen(!isOpen)}
+                  className="absolute inset-0 flex items-center justify-center text-white hover:text-[#ffbb71] transition-colors"
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isOpen}
                 >
-                  {isOpen ? (
-                    <>
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </>
-                  ) : (
-                    <>
-                      <line x1="3" y1="6" x2="21" y2="6"></line>
-                      <line x1="3" y1="12" x2="21" y2="12"></line>
-                      <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </>
-                  )}
-                </motion.svg>
-              </button>
+                  <motion.svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    animate={{ rotate: isOpen ? 90 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {isOpen ? (
+                      <>
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </>
+                    ) : (
+                      <>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                      </>
+                    )}
+                  </motion.svg>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

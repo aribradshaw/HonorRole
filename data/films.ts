@@ -87,6 +87,7 @@ export const films: Film[] = [
     ],
     image: "/films/idiotka.jpg",
     imdbLink: "https://www.imdb.com/title/tt35677327/",
+    trailerYouTubeUrl: "https://www.youtube.com/watch?v=0xTAq7_40tk",
     instagram: "https://www.instagram.com/idiotkamovie/?hl=en"
   },
   {

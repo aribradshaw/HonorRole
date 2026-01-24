@@ -191,7 +191,7 @@ export default function Header({
                   <Link 
                     href="/" 
                     onClick={() => setOpen(false)}
-                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap uppercase tracking-wider text-[11px] font-semibold"
                   >
                     Home
                   </Link>
@@ -207,7 +207,7 @@ export default function Header({
                   <Link 
                     href="/about" 
                     onClick={() => setOpen(false)}
-                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap uppercase tracking-wider text-[11px] font-semibold"
                   >
                     About
                   </Link>
@@ -223,7 +223,7 @@ export default function Header({
                   <Link 
                     href="/work" 
                     onClick={() => setOpen(false)}
-                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap uppercase tracking-wider text-[11px] font-semibold"
                   >
                     Projects
                   </Link>
@@ -239,7 +239,7 @@ export default function Header({
                   <Link 
                     href="/merch" 
                     onClick={() => setOpen(false)}
-                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap uppercase tracking-wider text-[11px] font-semibold"
                   >
                     Shop
                   </Link>
@@ -255,7 +255,7 @@ export default function Header({
                   <Link 
                     href="/press" 
                     onClick={() => setOpen(false)}
-                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap uppercase tracking-wider text-[11px] font-semibold"
                   >
                     Press
                   </Link>
@@ -271,7 +271,7 @@ export default function Header({
                   <Link 
                     href="/contact" 
                     onClick={() => setOpen(false)}
-                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
+                    className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap uppercase tracking-wider text-[11px] font-semibold"
                   >
                     Contact
                   </Link>
@@ -390,7 +390,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/" 
-              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               Home
             </Link>
@@ -398,7 +398,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/about" 
-              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               About
             </Link>
@@ -406,7 +406,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/work" 
-              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               Projects
             </Link>
@@ -414,7 +414,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/merch" 
-              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               Shop
             </Link>
@@ -422,7 +422,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/press" 
-              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               Press
             </Link>
@@ -430,7 +430,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/contact" 
-              className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
               Contact
             </Link>
@@ -469,7 +469,7 @@ export default function Header({
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="text-white text-base font-normal tracking-wide transition-colors px-2 py-1 rounded-md hover:bg-black/30"
+                    className="text-white text-[11px] font-semibold uppercase tracking-wider transition-colors px-2 py-1 rounded-md hover:bg-black/30"
                   >
                     {item.label}
                   </Link>

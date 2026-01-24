@@ -67,7 +67,23 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white font-display">About Honor Role</h2>
           </motion.div>
           <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-start">
-            <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full aspect-[3/4] rounded-custom-lg overflow-hidden order-1 md:order-2"
+            >
+              <Image
+                src="/photos/@cibellelevi Cibelle Levi__HonorRoleCamiRachel__FINAL.jpg"
+                alt="Camila Mendes and Rachel Matthews"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover"
+                priority={false}
+              />
+            </motion.div>
+            <div className="space-y-8 order-2 md:order-1">
               {paragraphs.map((paragraph, index) => (
                 <motion.p
                   key={paragraph.slice(0, 24)}
@@ -81,22 +97,6 @@ export default function AboutPage() {
                 </motion.p>
               ))}
             </div>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative w-full aspect-[3/4] rounded-custom-lg overflow-hidden"
-            >
-              <Image
-                src="/photos/@cibellelevi Cibelle Levi__HonorRoleCamiRachel__FINAL.jpg"
-                alt="Camila Mendes and Rachel Matthews"
-                fill
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className="object-cover"
-                priority={false}
-              />
-            </motion.div>
           </div>
         </div>
       </section>

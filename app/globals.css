@@ -118,6 +118,18 @@ html {
   }
 }
 
+@keyframes cloudDrift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 60%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .cloud-hero-bg {
   /* Baby-blue “cloud” gradient */
   background:
@@ -127,6 +139,13 @@ html {
     linear-gradient(180deg, #bcdcff 0%, var(--blue) 35%, #d7ecff 75%, #eaf4ff 100%);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.cloud-drift {
+  background-image: url('/logofiles/HR_Clouds_BG.png');
+  background-size: 120% auto;
+  background-position: 0% 50%;
+  animation: cloudDrift 40s ease-in-out infinite;
 }
 
 .animate-float {

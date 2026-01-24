@@ -6,19 +6,20 @@ export default function BoomerangCloudVideo() {
   const normalVideoRef = useRef<HTMLVideoElement>(null);
   const reversedVideoRef = useRef<HTMLVideoElement>(null);
   const [currentVideo, setCurrentVideo] = useState<"normal" | "reversed">("normal");
-  const blendDuration = 0.1; // 0.1 seconds blend
+  const currentVideoRef = useRef<"normal" | "reversed">("normal");
+  const blendDuration = 0.6; // seconds blend for crossfade
   const normalBlendStartedRef = useRef(false);
   const reversedBlendStartedRef = useRef(false);
+
+  useEffect(() => {
+    currentVideoRef.current = currentVideo;
+  }, [currentVideo]);
 
   useEffect(() => {
     const normalVideo = normalVideoRef.current;
     const reversedVideo = reversedVideoRef.current;
     
     if (!normalVideo || !reversedVideo) return;
-
-    // Preload both videos to ensure smooth transitions
-    normalVideo.load();
-    reversedVideo.load();
 
     // Start with normal video once it's ready
     const handleCanPlay = () => {
@@ -40,7 +41,7 @@ export default function BoomerangCloudVideo() {
       // Start blending 0.1s before the video ends
       const timeUntilEnd = normalVideo.duration - normalVideo.currentTime;
       
-      if (timeUntilEnd <= blendDuration && !normalBlendStartedRef.current && currentVideo === "normal") {
+      if (timeUntilEnd <= blendDuration && !normalBlendStartedRef.current && currentVideoRef.current === "normal") {
         normalBlendStartedRef.current = true;
         // Start the reversed video and begin crossfade
         reversedVideo.currentTime = 0;
@@ -58,7 +59,7 @@ export default function BoomerangCloudVideo() {
       // Start blending 0.1s before the video ends
       const timeUntilEnd = reversedVideo.duration - reversedVideo.currentTime;
       
-      if (timeUntilEnd <= blendDuration && !reversedBlendStartedRef.current && currentVideo === "reversed") {
+      if (timeUntilEnd <= blendDuration && !reversedBlendStartedRef.current && currentVideoRef.current === "reversed") {
         reversedBlendStartedRef.current = true;
         // Start the normal video and begin crossfade
         normalVideo.currentTime = 0;
@@ -72,7 +73,11 @@ export default function BoomerangCloudVideo() {
 
     const handleNormalEnded = () => {
       // Ensure we're on reversed video when normal ends
-      if (currentVideo === "normal") {
+      if (currentVideoRef.current === "normal") {
+        reversedVideo.currentTime = 0;
+        reversedVideo.play().catch((err) => {
+          console.error("Reversed video play failed:", err);
+        });
         setCurrentVideo("reversed");
       }
       normalBlendStartedRef.current = false;
@@ -80,7 +85,11 @@ export default function BoomerangCloudVideo() {
 
     const handleReversedEnded = () => {
       // Ensure we're on normal video when reversed ends
-      if (currentVideo === "reversed") {
+      if (currentVideoRef.current === "reversed") {
+        normalVideo.currentTime = 0;
+        normalVideo.play().catch((err) => {
+          console.error("Normal video play failed:", err);
+        });
         setCurrentVideo("normal");
       }
       reversedBlendStartedRef.current = false;
@@ -98,10 +107,10 @@ export default function BoomerangCloudVideo() {
       reversedVideo.removeEventListener("ended", handleReversedEnded);
       normalVideo.removeEventListener('canplay', handleCanPlay);
     };
-  }, [currentVideo, blendDuration]);
+  }, [blendDuration]);
 
   return (
-    <div className="fixed inset-0 z-0 bg-[#181619]">
+    <div className="fixed inset-0 z-0 bg-[#181619] cloud-drift">
       <video
         ref={normalVideoRef}
         autoPlay
@@ -114,7 +123,7 @@ export default function BoomerangCloudVideo() {
           minWidth: '100%', 
           minHeight: '100%', 
           backgroundColor: '#181619',
-          transition: 'opacity 0.1s ease-in-out',
+          transition: 'opacity 0.6s ease-in-out',
           pointerEvents: 'none'
         }}
       >
@@ -131,7 +140,7 @@ export default function BoomerangCloudVideo() {
           minWidth: '100%', 
           minHeight: '100%', 
           backgroundColor: '#181619',
-          transition: 'opacity 0.1s ease-in-out',
+          transition: 'opacity 0.6s ease-in-out',
           pointerEvents: 'none'
         }}
       >

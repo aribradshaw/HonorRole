@@ -167,7 +167,7 @@ export default function WorkPage() {
               </div>
               <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                 <div className="flex items-start gap-4 mb-4">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-wide">
                     {project.title}
                   </h2>
 

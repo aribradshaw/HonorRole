@@ -5,7 +5,6 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import BoomerangCloudVideo from "@/components/BoomerangCloudVideo";
 
 export default function Home() {
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
@@ -72,9 +71,6 @@ export default function Home() {
 
   return (
     <main className="h-screen w-full overflow-hidden relative bg-transparent">
-      {/* Fixed cloud video background with boomerang effect */}
-      <BoomerangCloudVideo />
-
       <div className="relative z-10 h-full flex flex-col">
         {/* Header */}
         <Header 

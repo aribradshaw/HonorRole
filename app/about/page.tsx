@@ -50,7 +50,7 @@ export default function AboutPage() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 font-display">About</h1>
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 font-display">ABOUT</h1>
           <p className="text-xl md:text-2xl text-white/85">Honor Role</p>
         </motion.div>
       }

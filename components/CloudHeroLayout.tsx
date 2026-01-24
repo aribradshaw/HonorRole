@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import BoomerangCloudVideo from "@/components/BoomerangCloudVideo";
 
 type CloudHeroLayoutProps = {
   hero: React.ReactNode;
@@ -32,9 +31,6 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
 
   return (
     <main className="min-h-screen text-[#181619] overflow-x-hidden relative bg-transparent">
-      {/* Fixed cloud hero background with boomerang video */}
-      <BoomerangCloudVideo />
-
       <div className="relative z-10">
         <Header
           showHamburger={true}
@@ -61,7 +57,7 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
         {/* Hero content lives over the fixed background */}
         <section
           ref={heroRef}
-          className="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-center justify-center px-4"
+          className="relative w-full min-h-[50vh] md:min-h-[60vh] flex items-center justify-center px-4"
         >
           {hero}
         </section>

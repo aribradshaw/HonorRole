@@ -108,6 +108,7 @@ export default function BoomerangCloudVideo() {
         muted
         playsInline
         preload="auto"
+        poster="/logofiles/HR_Clouds_BG.png"
         className={`absolute inset-0 w-full h-full object-cover ${currentVideo === "normal" ? "opacity-100" : "opacity-0"}`}
         style={{ 
           minWidth: '100%', 
@@ -124,6 +125,7 @@ export default function BoomerangCloudVideo() {
         muted
         playsInline
         preload="auto"
+        poster="/logofiles/HR_Clouds_BG.png"
         className={`absolute inset-0 w-full h-full object-cover ${currentVideo === "reversed" ? "opacity-100" : "opacity-0"}`}
         style={{ 
           minWidth: '100%', 

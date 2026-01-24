@@ -20,6 +20,42 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'interviewmagazine.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.interviewmagazine.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'indiewire.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.indiewire.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'newsbytesapp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.newsbytesapp.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'deadline.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.deadline.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

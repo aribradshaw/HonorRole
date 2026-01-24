@@ -13,16 +13,16 @@ export default function ContactPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center"
+          className="text-center py-10 md:py-16"
         >
-          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-[0.3em] font-display">
+          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-[0.3em] font-display px-4">
             CONTACT US
           </h1>
           <motion.form
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mt-10 w-full max-w-xl mx-auto space-y-6 text-left"
+            className="mt-10 w-full max-w-xl mx-auto space-y-6 text-left px-4"
           >
             <div>
               <label className="block text-white text-lg mb-2" htmlFor="contact-name">

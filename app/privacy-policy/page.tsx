@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-[#181619] mb-8">Privacy Policy</h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-[#181619] mb-8">PRIVACY POLICY</h1>
             <div className="text-sm text-[#181619]/60 mb-12 font-mono">
               Last Updated: December 20, 2025
             </div>

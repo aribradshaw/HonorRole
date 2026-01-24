@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import BackgroundMedia from "@/components/BackgroundMedia";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="antialiased">
-        {children}
+        <BackgroundMedia />
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

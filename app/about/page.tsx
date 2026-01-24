@@ -8,8 +8,8 @@ import Footer from "@/components/Footer";
 export default function AboutPage() {
   const paragraphs = [
     "Founded in 2024 by actresses Camila Mendes and Rachel Matthews, Honor Role stands as a dynamic new force in the entertainment industry. The production company specializes in developing feature films and television projects with a deliberate focus on character-driven narratives crafted by innovative filmmakers with distinctive perspectives.",
-    "Honor Role’s inaugural film, “GRIFFIN IN SUMMER,” marked the company’s entry into the production landscape. Building on this foundation, their sophomore project “IDIOTKA” premiered at SXSW in March 2025, where it garnered critical acclaim. Variety praised the film as a “sharp satire,” while Deadline recognized it as a “winning directorial debut.” The production also earned accolades for its impressive ensemble cast featuring Anna Baryshnikov, Julia Fox, Benito Skinner, Saweetie, Owen Thiele, and Camila Mendes herself.",
-    "Prior to establishing Honor Role, Mendes and Matthews demonstrated their production acumen as executive producers on “UPGRADED,” a romantic comedy in which they starred alongside Academy Award winner Marisa Tomei. The film debuted on Amazon to considerable success, maintaining its position as the platform’s number one film globally for several consecutive weeks. Mendes further expanded her producer credentials by serving as an executive producer on Amazon’s critically acclaimed “MÚSICA,” where she starred opposite director Rudy Mancuso.",
+    "Honor Role’s inaugural film, GRIFFIN IN SUMMER, marked the company’s entry into the production landscape. Building on this foundation, their sophomore project IDIOTKA premiered at SXSW in March 2025, where it garnered critical acclaim. Variety praised the film as a “sharp satire,” while Deadline recognized it as a “winning directorial debut.” The production also earned accolades for its impressive ensemble cast featuring Anna Baryshnikov, Julia Fox, Benito Skinner, Saweetie, Owen Thiele, and Camila Mendes herself.",
+    "Prior to establishing Honor Role, Mendes and Matthews demonstrated their production acumen as executive producers on UPGRADED, a romantic comedy in which they starred alongside Academy Award winner Marisa Tomei. The film debuted on Amazon to considerable success, maintaining its position as the platform’s number one film globally for several consecutive weeks. Mendes further expanded her producer credentials by serving as an executive producer on Amazon’s critically acclaimed MÚSICA, where she starred opposite director Rudy Mancuso.",
     "Honor Role continues to pursue its mission of bringing compelling, character-driven stories to audiences worldwide through thoughtful collaboration with visionary filmmakers."
   ];
 
@@ -112,31 +112,59 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white font-display">Meet the Team</h2>
           </motion.div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.map((member) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
-              >
-                <div className="relative w-full aspect-[4/5]">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <h3 className="text-xl text-white font-semibold">{member.name}</h3>
-                  <p className="text-white/70 text-sm mt-1">{member.role}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="space-y-8">
+            <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
+              {teamMembers.slice(0, 2).map((member) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="w-full max-w-[320px] rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
+                >
+                  <div className="relative w-full aspect-[4/5]">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-xl text-white font-semibold">{member.name}</h3>
+                    <p className="text-white/70 text-sm mt-1">{member.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {teamMembers.slice(2).map((member) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
+                >
+                  <div className="relative w-full aspect-[4/5]">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-xl text-white font-semibold">{member.name}</h3>
+                    <p className="text-white/70 text-sm mt-1">{member.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

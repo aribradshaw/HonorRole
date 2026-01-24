@@ -32,8 +32,8 @@ export default function Header({
     () => [
       { label: "Home", href: "/" },
       { label: "About", href: "/about" },
-      { label: "Work", href: "/work" },
-      { label: "Merch", href: "/merch" },
+      { label: "Projects", href: "/work" },
+      { label: "Shop", href: "/merch" },
       { label: "Press", href: "/press" },
       { label: "Contact", href: "/contact" }
     ],
@@ -225,7 +225,7 @@ export default function Header({
                     onClick={() => setOpen(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
                   >
-                    Work
+                    Projects
                   </Link>
                 </motion.div>
                 <motion.div
@@ -241,7 +241,7 @@ export default function Header({
                     onClick={() => setOpen(false)}
                     className="text-white hover:text-[#ffbb71] transition-colors whitespace-nowrap"
                   >
-                    Merch
+                    Shop
                   </Link>
                 </motion.div>
                 <motion.div
@@ -408,7 +408,7 @@ export default function Header({
               href="/work" 
               className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
-              Work
+              Projects
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -416,7 +416,7 @@ export default function Header({
               href="/merch" 
               className={`hover:text-[#ca9215] transition-colors ${overFooter ? 'text-white' : 'text-[#181619]'}`}
             >
-              Merch
+              Shop
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

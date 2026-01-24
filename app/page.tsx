@@ -71,11 +71,11 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen w-full overflow-hidden relative bg-transparent">
+    <main className="min-h-screen w-full overflow-x-hidden relative bg-transparent">
       {/* Fixed cloud video background with boomerang effect */}
       <BoomerangCloudVideo />
 
-      <div className="relative z-10 h-full flex flex-col">
+      <div className="relative z-10">
         {/* Header */}
         <Header 
           showHamburger={true}
@@ -86,7 +86,7 @@ export default function Home() {
         />
 
         {/* Main content - centered vertically with equal spacing */}
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -153,42 +153,73 @@ export default function Home() {
               )}
             </form>
           </motion.div>
-        </div>
-
-        {/* Footer links - bottom left */}
-        <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-20">
-          <div className="flex flex-wrap items-center justify-start gap-x-3 gap-y-1 text-xs text-white/70">
-            <Link 
-              href="/privacy-policy" 
-              className="hover:text-white transition-colors hover:underline"
-            >
-              Privacy Policy
-            </Link>
-            <span className="text-white/40">/</span>
-            <Link 
-              href="/terms-and-conditions" 
-              className="hover:text-white transition-colors hover:underline"
-            >
-              Terms
-            </Link>
-            <span className="text-white/40">/</span>
-            <Link 
-              href="/california-privacy-rights" 
-              className="hover:text-white transition-colors hover:underline"
-            >
-              CPR
-            </Link>
-            <span className="text-white/40">/</span>
-            <Link 
-              href="/sitemap.xml" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors hover:underline"
-            >
-              Sitemap
-            </Link>
+          {/* Footer links - bottom left */}
+          <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-20">
+            <div className="flex flex-wrap items-center justify-start gap-x-3 gap-y-1 text-xs text-white/70">
+              <Link 
+                href="/privacy-policy" 
+                className="hover:text-white transition-colors hover:underline"
+              >
+                Privacy Policy
+              </Link>
+              <span className="text-white/40">/</span>
+              <Link 
+                href="/terms-and-conditions" 
+                className="hover:text-white transition-colors hover:underline"
+              >
+                Terms
+              </Link>
+              <span className="text-white/40">/</span>
+              <Link 
+                href="/california-privacy-rights" 
+                className="hover:text-white transition-colors hover:underline"
+              >
+                CPR
+              </Link>
+              <span className="text-white/40">/</span>
+              <Link 
+                href="/sitemap.xml" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors hover:underline"
+              >
+                Sitemap
+              </Link>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section className="relative w-full px-4 pb-24 md:pb-28">
+          <div className="w-full max-w-5xl mx-auto grid gap-10 md:grid-cols-[0.9fr_1.1fr] items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full aspect-[3/4] rounded-custom-lg overflow-hidden"
+            >
+              <Image
+                src="/photos/@cibellelevi Cibelle Levi__HonorRoleCamiRachel__FINAL.jpg"
+                alt="Camila Mendes and Rachel Matthews"
+                fill
+                sizes="(max-width: 768px) 100vw, 45vw"
+                className="object-cover"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-white"
+            >
+              <h2 className="text-3xl md:text-4xl font-semibold font-display">Camila Mendes + Rachel Matthews</h2>
+              <p className="mt-4 text-white/80 text-lg md:text-xl leading-relaxed">
+                Co-founders of Honor Role, building character-driven stories alongside bold new voices.
+              </p>
+            </motion.div>
+          </div>
+        </section>
       </div>
     </main>
   );

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
@@ -43,14 +44,30 @@ export default function PressPage() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">Press</h1>
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 font-display">Press</h1>
           <p className="text-xl md:text-2xl text-white/85">News &amp; Features</p>
         </motion.div>
       }
     >
       {/* Articles Section */}
-      <section className="relative w-full py-32 px-4 md:px-8">
+      <section className="relative w-full py-20 md:py-24 px-4 md:px-8">
         <div className="w-full max-w-4xl mx-auto space-y-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full aspect-[16/9] rounded-custom-lg overflow-hidden"
+          >
+            <Image
+              src="/photos/@cibellelevi Cibelle Levi__HonorRoleCamiRachel__FINAL.jpg"
+              alt="Honor Role press cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 70vw"
+              className="object-cover"
+              priority={false}
+            />
+          </motion.div>
           {articles.map((article, index) => (
             <motion.div
               key={article.title}
@@ -72,7 +89,7 @@ export default function PressPage() {
                   </span>
                   <span className="text-sm text-white/70 ml-4">{article.date}</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-[#ffbb71] transition-colors">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-[#ffbb71] transition-colors font-display">
                   {article.title}
                 </h2>
                 <span className="text-lg text-white underline group-hover:text-[#ffbb71] transition-colors">

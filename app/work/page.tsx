@@ -93,13 +93,13 @@ export default function WorkPage() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4">Work</h1>
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 font-display">PROJECTS</h1>
           <p className="text-xl md:text-2xl text-white/85">Our Films &amp; Projects</p>
         </motion.div>
       }
     >
       {/* Projects Section */}
-      <section className="relative w-full py-32 px-4 md:px-8">
+      <section className="relative w-full py-20 md:py-24 px-4 md:px-8">
         <div className="w-full max-w-6xl mx-auto space-y-32">
           {projects.map((project, index) => (
             <motion.div

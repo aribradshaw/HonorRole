@@ -61,7 +61,7 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
         {/* Hero content lives over the fixed background */}
         <section
           ref={heroRef}
-          className="relative w-full h-[55vh] md:h-screen flex items-center justify-center px-4"
+          className="relative w-full min-h-[65vh] md:min-h-[75vh] flex items-center justify-center px-4"
         >
           {hero}
         </section>

@@ -15,7 +15,7 @@ export default function ContactPage() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-[0.3em]">
+          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-[0.3em] font-display">
             CONTACT US
           </h1>
           <motion.form

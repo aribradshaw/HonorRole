@@ -38,6 +38,7 @@ export default function CloudHeroLayout({ hero, children }: CloudHeroLayoutProps
           menuOpen={menuOpen}
           setMenuOpen={setMenuOpen}
           disableScrollTransition={true}
+          forceLightTheme={true}
         />
 
         {/* Honor Role logo - top left, clickable */}

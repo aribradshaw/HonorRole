@@ -12,6 +12,7 @@ interface HeaderProps {
   setMenuOpen?: (open: boolean) => void;
   showPulse?: boolean;
   disableScrollTransition?: boolean;
+  forceLightTheme?: boolean;
 }
 
 export default function Header({ 
@@ -20,13 +21,15 @@ export default function Header({
   menuOpen = false,
   setMenuOpen,
   showPulse = false,
-  disableScrollTransition = false
+  disableScrollTransition = false,
+  forceLightTheme = false
 }: HeaderProps) {
   const [overFooter, setOverFooter] = useState(false);
   const [logoOpacity, setLogoOpacity] = useState(0);
   const footerRef = useRef<HTMLElement | null>(null);
   const [internalMenuOpen, setInternalMenuOpen] = useState(false);
   const effectiveScrolledPastHero = disableScrollTransition ? false : scrolledPastHero;
+  const useLightTheme = forceLightTheme || overFooter;
 
   const navItems = useMemo(
     () => [
@@ -108,7 +111,7 @@ export default function Header({
             {/* Black logo (base layer) */}
             <div
               style={{
-                opacity: 1 - logoOpacity,
+                opacity: forceLightTheme ? 0 : 1 - logoOpacity,
                 transition: 'opacity 0.3s ease-out',
               }}
               className="absolute inset-0"
@@ -126,7 +129,7 @@ export default function Header({
             {/* White logo (overlay layer) */}
             <div
               style={{
-                opacity: logoOpacity,
+                opacity: forceLightTheme ? 1 : logoOpacity,
                 transition: 'opacity 0.3s ease-out',
               }}
               className="absolute inset-0"
@@ -347,7 +350,9 @@ export default function Header({
           <button
             onClick={() => setOpen(!isOpen)}
             className={`${
-              effectiveScrolledPastHero ? (overFooter ? "text-white" : "text-[#181619]") : "text-white"
+              effectiveScrolledPastHero
+                ? (forceLightTheme ? "text-white" : (overFooter ? "text-white" : "text-[#181619]"))
+                : "text-white"
             } hover:text-[#ffbb71] transition-colors z-10 relative`}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -390,7 +395,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/" 
-              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${useLightTheme ? 'text-white' : 'text-[#181619]'}`}
             >
               Home
             </Link>
@@ -398,7 +403,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/about" 
-              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${useLightTheme ? 'text-white' : 'text-[#181619]'}`}
             >
               About
             </Link>
@@ -406,7 +411,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/work" 
-              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${useLightTheme ? 'text-white' : 'text-[#181619]'}`}
             >
               Projects
             </Link>
@@ -414,7 +419,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/merch" 
-              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${useLightTheme ? 'text-white' : 'text-[#181619]'}`}
             >
               Shop
             </Link>
@@ -422,7 +427,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/press" 
-              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${useLightTheme ? 'text-white' : 'text-[#181619]'}`}
             >
               Press
             </Link>
@@ -430,7 +435,7 @@ export default function Header({
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <Link 
               href="/contact" 
-              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${overFooter ? 'text-white' : 'text-[#181619]'}`}
+              className={`hover:text-[#ca9215] transition-colors uppercase tracking-wider text-[11px] font-semibold ${useLightTheme ? 'text-white' : 'text-[#181619]'}`}
             >
               Contact
             </Link>

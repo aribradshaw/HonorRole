@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
@@ -98,15 +97,14 @@ export default function PressPage() {
                 rel="noopener noreferrer"
                 className="block rounded-custom-lg overflow-hidden border border-white/10 bg-black/20 hover:border-white/30 transition-colors"
               >
-                <div className="relative w-full aspect-[4/3] overflow-hidden">
-                  <Image
+                <div className="relative w-full overflow-hidden">
+                  <img
                     src={coverImage}
                     alt={article.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
                 </div>
                 <div className="p-5 space-y-3">
                   <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-wide">

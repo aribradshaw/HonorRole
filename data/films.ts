@@ -30,7 +30,7 @@ export interface Film {
 export const films: Film[] = [
   {
     title: "Griffin in Summer",
-    status: "Released",
+    status: "Streaming now on Hulu",
     description: "Griffin Nafly (Everett Blunck) is the most ambitious playwright of his generation. He's also fourteen years old and living with his parents in a humdrum suburb while dreaming of moving to New York City. When his mom (Melanie Lynskey) hires a handsome 25-year-old handyman (Owen Teague), Griffin's life and his new play take an inspired turn.",
     releaseYear: 2024,
     runtime: "1h 33m",
@@ -70,7 +70,7 @@ export const films: Film[] = [
   {
     title: "Idiotka",
     status: "Releases in theaters February 2026",
-    description: "",
+    description: "A sharp, character-driven satire about identity, ambition, and the cost of becoming who you want to be.",
     releaseYear: 2026,
     genres: ["Comedy"],
     links: [
@@ -93,7 +93,7 @@ export const films: Film[] = [
   {
     title: "DED",
     status: "In Post-Production",
-    description: "",
+    description: "A visceral thriller following a family pushed to the edge as a hidden past resurfaces.",
     links: [],
   }
 ];

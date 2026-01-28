@@ -93,8 +93,7 @@ export default function WorkPage() {
           transition={{ duration: 1 }}
           className="text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 font-display">PROJECTS</h1>
-          <p className="text-xl md:text-2xl text-white/85">Our Films &amp; Projects</p>
+          <h1 className="text-6xl md:text-8xl font-bold text-white font-display">PROJECTS</h1>
         </motion.div>
       }
     >

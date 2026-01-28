@@ -7,10 +7,10 @@ import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   const paragraphs = [
-    "Founded in 2024 by actresses Camila Mendes and Rachel Matthews, Honor Role stands as a dynamic new force in the entertainment industry. The production company specializes in developing feature films and television projects with a deliberate focus on character-driven narratives crafted by innovative filmmakers with distinctive perspectives.",
-    "Honor Role’s inaugural film, GRIFFIN IN SUMMER, marked the company’s entry into the production landscape. Building on this foundation, their sophomore project IDIOTKA premiered at SXSW in March 2025, where it garnered critical acclaim. Variety praised the film as a “sharp satire,” while Deadline recognized it as a “winning directorial debut.” The production also earned accolades for its impressive ensemble cast featuring Anna Baryshnikov, Julia Fox, Benito Skinner, Saweetie, Owen Thiele, and Camila Mendes herself.",
-    "Prior to establishing Honor Role, Mendes and Matthews demonstrated their production acumen as executive producers on UPGRADED, a romantic comedy in which they starred alongside Academy Award winner Marisa Tomei. The film debuted on Amazon to considerable success, maintaining its position as the platform’s number one film globally for several consecutive weeks. Mendes further expanded her producer credentials by serving as an executive producer on Amazon’s critically acclaimed MÚSICA, where she starred opposite director Rudy Mancuso.",
-    "Honor Role continues to pursue its mission of bringing compelling, character-driven stories to audiences worldwide through thoughtful collaboration with visionary filmmakers."
+    "Founded in 2024 by actresses Camila Mendes and Rachel Matthews, Honor Role is a media company dedicated to championing character-driven stories. Rooted in the co-founders’ shared passion for acting – forged during their early days at NYU’s Tisch School of the Arts – Honor Role was born out of a desire to balance art and commerce, creating high-quality productions that \"honor the role\" and uplift actors.",
+    "Honor Role’s inaugural film, GRIFFIN IN SUMMER, starred breakout talent Everett Blunck alongside Melanie Lynskey, Owen Teague, and Katherine Newton. The film won Best Narrative Feature and Best Screenplay at the 2024 Tribeca Film Festival and is now streaming on Hulu. The company’s sophomore feature, IDIOTKA, premiered to critical acclaim at the 2025 SXSW Festival and was acquired by Utopia for theatrical release in 2026. Written and directed by first-time filmmaker Nastasya Popov, IDIOTKA boasts a buzzy ensemble including Camila Mendes, Anna Baryshnikov, Julia Fox, Benito Skinner, Saweetie, and Owen Thiele.",
+    "Prior to launching Honor Role, Mendes and Matthews honed their producing sensibilities as executive producers on Amazon’s hit romantic comedy, UPGRADED, which they also starred in opposite Academy Award winner Marisa Tomei.",
+    "Now a dynamic new force in the entertainment industry, Honor Role is collaborating with innovative storytellers to produce film and television projects with distinctive perspectives. Balancing commercial appeal with emotional depth, Honor Role continues to take creative risks and reach for a global audience through bold, original content."
   ];
 
   const teamMembers = [
@@ -113,7 +113,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white font-display">Meet the Team</h2>
           </motion.div>
           <div className="space-y-8">
-            <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
+            <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center">
               {teamMembers.slice(0, 2).map((member) => (
                 <motion.div
                   key={member.name}
@@ -121,7 +121,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className="w-full max-w-[320px] rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
+                  className="w-full max-w-[260px] rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
                 >
                   <div className="relative w-full aspect-[4/5]">
                     <Image
@@ -132,9 +132,9 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-xl text-white font-semibold">{member.name}</h3>
-                    <p className="text-white/70 text-sm mt-1">{member.role}</p>
+                  <div className="p-4">
+                    <h3 className="text-base md:text-lg text-white font-semibold">{member.name}</h3>
+                    <p className="text-white/70 text-xs md:text-sm mt-1">{member.role}</p>
                   </div>
                 </motion.div>
               ))}
@@ -147,7 +147,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className="rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
+                className="rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
                 >
                   <div className="relative w-full aspect-[4/5]">
                     <Image
@@ -158,9 +158,9 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-xl text-white font-semibold">{member.name}</h3>
-                    <p className="text-white/70 text-sm mt-1">{member.role}</p>
+                <div className="p-4">
+                  <h3 className="text-base md:text-lg text-white font-semibold">{member.name}</h3>
+                  <p className="text-white/70 text-xs md:text-sm mt-1">{member.role}</p>
                   </div>
                 </motion.div>
               ))}

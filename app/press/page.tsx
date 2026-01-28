@@ -25,13 +25,6 @@ export default function PressPage() {
       image: "/photos/camila-mendes.jpeg"
     },
     {
-      title: "‘Riverdale’ star Camila Mendes and Rachel Matthews launch production company Honor Role",
-      publication: "NEWSBYTES",
-      date: "June 4, 2024",
-      href: "https://www.newsbytesapp.com/news/entertainment/camila-mendes-enters-production-domain-launches-honor-role/story",
-      image: "/photos/@cibellelevi Cibelle Levi__HonorRoleCamiRachel__FINAL.jpg"
-    },
-    {
       title: "Camila Mendes & Rachel Matthews Launch Production Company Honor Role",
       publication: "DEADLINE",
       date: "June 3, 2024",
@@ -89,10 +82,7 @@ export default function PressPage() {
       <section className="relative w-full py-20 md:py-24 px-4 md:px-8">
         <div className="w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {articles.map((article, index) => {
-            // Always use local image for Deadline article to avoid duplicate
-            const coverImage = article.publication === "DEADLINE" 
-              ? article.image 
-              : (articleImages[article.href] ?? article.image);
+            const coverImage = articleImages[article.href] ?? article.image;
             return (
             <motion.div
               key={article.title}

@@ -69,9 +69,37 @@ export default function Home() {
     setTimeout(() => setSubmitted(false), 3000);
   };
 
+  const modules = [
+    {
+      title: "ABOUT",
+      description: "Who we are and what we stand for.",
+      href: "/about",
+    },
+    {
+      title: "PROJECTS",
+      description: "Films and TV projects in development.",
+      href: "/work",
+    },
+    {
+      title: "PRESS",
+      description: "Coverage, interviews, and news.",
+      href: "/press",
+    },
+    {
+      title: "SHOP",
+      description: "Merch drops and updates.",
+      href: "/merch",
+    },
+    {
+      title: "CONTACT",
+      description: "Get in touch with Honor Role.",
+      href: "/contact",
+    },
+  ];
+
   return (
-    <main className="h-screen w-full overflow-hidden relative bg-transparent">
-      <div className="relative z-10 h-full flex flex-col">
+    <main className="min-h-screen w-full overflow-x-hidden relative bg-transparent">
+      <div className="relative z-10">
         {/* Header */}
         <Header 
           showHamburger={true}
@@ -82,7 +110,7 @@ export default function Home() {
         />
 
         {/* Main content - centered vertically with equal spacing */}
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+        <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -183,7 +211,37 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </div>
+        </section>
+
+        <section className="relative w-full py-20 md:py-24 px-4 md:px-8">
+          <div className="w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {modules.map((module, index) => (
+              <motion.div
+                key={module.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="group"
+              >
+                <Link
+                  href={module.href}
+                  className="block rounded-custom-lg border border-white/15 bg-black/20 p-6 md:p-8 transition-colors hover:border-white/40"
+                >
+                  <h2 className="text-2xl md:text-3xl font-semibold text-white font-display">
+                    {module.title}
+                  </h2>
+                  <p className="mt-3 text-white/75 text-base md:text-lg">
+                    {module.description}
+                  </p>
+                  <span className="mt-6 inline-flex text-sm uppercase tracking-wider text-[#ffbb71]">
+                    View →
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

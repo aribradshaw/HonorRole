@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;700&family=Libre+Baskerville:wght@400;700&family=Spectral:wght@400;500;600;700&family=Crimson+Text:wght@400;600;700&family=PT+Serif:wght@400;700&family=Fira+Sans:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700&family=Alegreya:wght@400;500;600;700&family=Assistant:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Bodoni+Moda:wght@400;500;600;700&family=Italiana&family=DM+Serif+Display&family=Abril+Fatface&family=Prata&family=Marcellus&family=Cardo:wght@400;700&family=Cormorant:wght@400;500;600;700&family=Unica+One&family=Monoton&family=Yeseva+One&family=Libre+Caslon+Display&family=Zeyada&family=Forum&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -37,6 +37,8 @@
   
   --background: var(--paper-bg);
   --foreground: var(--off-black);
+  --font-body: "Manrope", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-display: "Playfair Display", "Times New Roman", serif;
 }
 
 * {
@@ -46,14 +48,29 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Manrope", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 .font-display {
-  font-family: "Playfair Display", "Times New Roman", serif;
+  font-family: var(--font-display);
+}
+
+.font-switcher-spacing {
+  padding-bottom: 88px;
+}
+
+.font-switcher-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(17, 16, 19, 0.85);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Logo fonts */

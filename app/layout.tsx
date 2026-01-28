@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import BackgroundMedia from "@/components/BackgroundMedia";
+import FontSwitcher from "@/components/FontSwitcher";
 import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
@@ -70,6 +71,7 @@ export default function RootLayout({
         />
         <BackgroundMedia />
         <PageTransition>{children}</PageTransition>
+        <FontSwitcher />
       </body>
     </html>
   );

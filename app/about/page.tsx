@@ -27,7 +27,7 @@ export default function AboutPage() {
     {
       name: "Meredith Ditlow",
       role: "Senior Vice President",
-      image: "/photos/meredith-ditlow.jpeg",
+      image: "/photos/Meredith Ditlow - Headshot.jpeg",
     },
     {
       name: "Natalie Gerber",

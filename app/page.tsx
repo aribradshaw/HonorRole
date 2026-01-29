@@ -234,7 +234,7 @@ export default function Home() {
                 PROJECTS
               </h2>
             </motion.div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 md:items-start">
               {featuredProjects.map((project, index) => (
                 <motion.div
                   key={project.title}
@@ -242,7 +242,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="rounded-custom-lg border border-white/15 bg-black/20 p-6 md:p-8"
+                  className="rounded-custom-lg border border-white/15 bg-black/20 p-6 md:p-8 h-fit"
                 >
                   {/* Poster on top */}
                   <div className="relative w-full aspect-[2/3] rounded-custom-lg overflow-hidden">

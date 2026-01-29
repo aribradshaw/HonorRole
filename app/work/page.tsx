@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CloudHeroLayout from "@/components/CloudHeroLayout";
 import Footer from "@/components/Footer";
@@ -10,79 +9,8 @@ import { films } from "@/data/films";
 import { FaInstagram } from "react-icons/fa";
 import { FaApple, FaPlay } from "react-icons/fa";
 
-const griffinSlides = [
-  {
-    src: "/films/griffininsummer.jpg",
-    alt: "Griffin in Summer still 1",
-  },
-  {
-    src: "/films/griffininsummer2.jpg",
-    alt: "Griffin in Summer still 2",
-  },
-  {
-    src: "/films/griffininsummer3.jpg",
-    alt: "Griffin in Summer still 3",
-  },
-];
-
-function GriffinKenBurnsSlideshow() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlide((current) => (current + 1) % griffinSlides.length);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <>
-      {griffinSlides.map((slide, index) => {
-        const isActive = index === activeSlide;
-        return (
-          <motion.div
-            key={slide.src}
-            className="absolute inset-0"
-            initial={false}
-            animate={
-              isActive
-                ? {
-                    opacity: 1,
-                    scale: [1, 1.08],
-                    x: [0, 12],
-                    y: [0, -8],
-                  }
-                : { opacity: 0, scale: 1, x: 0, y: 0 }
-            }
-            transition={
-              isActive
-                ? {
-                    duration: 6,
-                    ease: "linear",
-                    opacity: { duration: 0.6, ease: "easeInOut" },
-                  }
-                : { duration: 0.6, ease: "easeInOut" }
-            }
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-              priority={index === 0}
-            />
-          </motion.div>
-        );
-      })}
-    </>
-  );
-}
-
 export default function WorkPage() {
   const projects = films;
-  const placeholderVideoSrc = "/honorrolehero.mp4";
 
   return (
     <CloudHeroLayout
@@ -111,12 +39,14 @@ export default function WorkPage() {
             >
               <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
                 <div className="relative">
-                  <div className="relative w-full aspect-[4/3] rounded-custom-lg overflow-hidden">
-                    {project.title === "Griffin in Summer" ? (
-                      <GriffinKenBurnsSlideshow />
-                    ) : project.image ? (
+                  <div
+                    className={`relative w-full rounded-custom-lg overflow-hidden ${
+                      project.poster ?? project.image ? "aspect-[2/3]" : "aspect-[4/3]"
+                    }`}
+                  >
+                    {project.poster ?? project.image ? (
                       <Image
-                        src={project.image}
+                        src={(project.poster ?? project.image) as string}
                         alt={project.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"

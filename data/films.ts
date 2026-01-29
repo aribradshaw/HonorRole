@@ -20,6 +20,7 @@ export interface Film {
   cast?: CastMember[];
   links: FilmLink[];
   image?: string;
+  poster?: string;
   images?: string[]; // Additional images/photos
   imdbLink?: string;
   trailerYouTubeUrl?: string;
@@ -62,6 +63,7 @@ export const films: Film[] = [
       }
     ],
     image: "/films/griffininsummer.jpg",
+    poster: "/films/posters/Griffin_In_Summer_VOD_Portrait_LR.jpg",
     imdbLink: "https://www.imdb.com/title/tt28569819/",
     trailerYouTubeUrl: "https://www.youtube.com/watch?v=rqB0PrvUs0M&pp=ygURZ3JpZmZpbiBpbiBzdW1tZXI%3D",
     instagram: "https://www.instagram.com/griffininsummerfilm/?hl=en",
@@ -86,6 +88,7 @@ export const films: Film[] = [
       }
     ],
     image: "/films/idiotka.jpg",
+    poster: "/films/posters/IDIOTKA-POSTER-2-R10.jpeg",
     imdbLink: "https://www.imdb.com/title/tt35677327/",
     trailerYouTubeUrl: "https://www.youtube.com/watch?v=0xTAq7_40tk",
     instagram: "https://www.instagram.com/idiotkamovie/?hl=en"

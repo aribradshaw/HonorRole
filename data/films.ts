@@ -72,7 +72,7 @@ export const films: Film[] = [
   {
     title: "Idiotka",
     status: "Releases in theaters February 2026",
-    description: "A sharp, character-driven satire about identity, ambition, and the cost of becoming who you want to be.",
+    description: "In this sharp, irreverent comedy, a disgraced fashion designer with a dangerously low credit score, Margarita (Anna Baryshnikov) enters a reality show with a six-figure cash prize to save her babushka's West Hollywood apartment. But as the competition intensifies, slick producer Nicol (Camila Mendes) pushes her to spin her family's struggle into spectacle, forcing Margarita to decide whether to play along or take control of her own narrative, one unhinged look at a time.",
     releaseYear: 2026,
     genres: ["Comedy"],
     links: [
@@ -96,7 +96,7 @@ export const films: Film[] = [
   {
     title: "DED",
     status: "In Post-Production",
-    description: "A visceral thriller following a family pushed to the edge as a hidden past resurfaces.",
+    description: "A contemporary silent film following the journey of a young man who wakes up to discover he is no longer alive, and is forced to confront his mortality as he watches the world, and everyone he loves, spin on without him.",
     links: [],
   }
 ];

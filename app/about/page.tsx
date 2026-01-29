@@ -32,7 +32,7 @@ export default function AboutPage() {
     {
       name: "Natalie Gerber",
       role: "Creative Executive",
-      image: "/photos/Natalie Gerber 2.jpeg",
+      image: "/photos/NVGheadshots_Emilio Madrid_2725 copy 2.jpeg",
     },
     {
       name: "Ashlyn Bradshaw",

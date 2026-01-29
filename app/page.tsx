@@ -9,31 +9,19 @@ import { films } from "@/data/films";
 import { FaApple, FaPlay } from "react-icons/fa";
 
 const griffinSlides = [
-  {
-    src: "/films/griffininsummer.jpg",
-    alt: "Griffin in Summer still 1",
-  },
-  {
-    src: "/films/griffininsummer2.jpg",
-    alt: "Griffin in Summer still 2",
-  },
-  {
-    src: "/films/griffininsummer3.jpg",
-    alt: "Griffin in Summer still 3",
-  },
+  { src: "/films/griffininsummer.jpg", alt: "Griffin in Summer still 1" },
+  { src: "/films/griffininsummer2.jpg", alt: "Griffin in Summer still 2" },
+  { src: "/films/griffininsummer3.jpg", alt: "Griffin in Summer still 3" },
 ];
 
 function GriffinKenBurnsSlideshow() {
   const [activeSlide, setActiveSlide] = useState(0);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide((current) => (current + 1) % griffinSlides.length);
     }, 6000);
-
     return () => clearInterval(interval);
   }, []);
-
   return (
     <>
       {griffinSlides.map((slide, index) => {
@@ -43,34 +31,10 @@ function GriffinKenBurnsSlideshow() {
             key={slide.src}
             className="absolute inset-0"
             initial={false}
-            animate={
-              isActive
-                ? {
-                    opacity: 1,
-                    scale: [1, 1.08],
-                    x: [0, 12],
-                    y: [0, -8],
-                  }
-                : { opacity: 0, scale: 1, x: 0, y: 0 }
-            }
-            transition={
-              isActive
-                ? {
-                    duration: 6,
-                    ease: "linear",
-                    opacity: { duration: 0.6, ease: "easeInOut" },
-                  }
-                : { duration: 0.6, ease: "easeInOut" }
-            }
+            animate={isActive ? { opacity: 1, scale: [1, 1.08], x: [0, 12], y: [0, -8] } : { opacity: 0, scale: 1, x: 0, y: 0 }}
+            transition={isActive ? { duration: 6, ease: "linear", opacity: { duration: 0.6, ease: "easeInOut" } } : { duration: 0.6, ease: "easeInOut" }}
           >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-              priority={index === 0}
-            />
+            <Image src={slide.src} alt={slide.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" priority={index === 0} />
           </motion.div>
         );
       })}
@@ -280,13 +244,12 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="rounded-custom-lg border border-white/15 bg-black/20 p-6 md:p-8"
                 >
-                  <div className="relative w-full aspect-[4/3] rounded-custom-lg overflow-hidden">
-                    {project.title === "Griffin in Summer" ? (
-                      <GriffinKenBurnsSlideshow />
-                    ) : project.image ? (
+                  {/* Poster on top */}
+                  <div className="relative w-full aspect-[2/3] rounded-custom-lg overflow-hidden">
+                    {project.poster ?? project.image ? (
                       <Image
-                        src={project.image}
-                        alt={project.title}
+                        src={(project.poster ?? project.image) as string}
+                        alt={`${project.title} poster`}
                         fill
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
@@ -297,38 +260,6 @@ export default function Home() {
                           Coming Soon
                         </span>
                       </div>
-                    )}
-
-                    {project.trailerYouTubeUrl && (
-                      <Link
-                        href={project.trailerYouTubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Watch ${project.title} trailer`}
-                        className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
-                      >
-                        <FaPlay className="text-sm rounded-none" style={{ borderRadius: 0 }} aria-hidden="true" />
-                        <span>Watch trailer</span>
-                      </Link>
-                    )}
-
-                    {project.imdbLink && (
-                      <Link
-                        href={project.imdbLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${project.title} on IMDb`}
-                        className="absolute top-4 right-4 hover:opacity-90 transition-opacity"
-                      >
-                        <Image
-                          src="/logofiles/IMDB_Logo_2016.svg"
-                          alt="IMDb"
-                          width={64}
-                          height={32}
-                          className="h-6 w-auto"
-                          priority={false}
-                        />
-                      </Link>
                     )}
                   </div>
 
@@ -389,6 +320,59 @@ export default function Home() {
                         </Link>
                       ))}
                   </div>
+
+                    {/* Photos/slideshow below text — trailer + IMDb on this block */}
+                    <div className="relative w-full aspect-[4/3] rounded-custom-lg overflow-hidden mt-6">
+                      {project.title === "Griffin in Summer" ? (
+                        <GriffinKenBurnsSlideshow />
+                      ) : project.image ? (
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-[#181619]">
+                          <span className="text-[#ca9215] text-xl md:text-2xl font-semibold tracking-wide uppercase">
+                            Coming Soon
+                          </span>
+                        </div>
+                      )}
+
+                      {project.trailerYouTubeUrl && (
+                        <Link
+                          href={project.trailerYouTubeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Watch ${project.title} trailer`}
+                          className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
+                        >
+                          <FaPlay className="text-sm rounded-none" style={{ borderRadius: 0 }} aria-hidden="true" />
+                          <span>Watch trailer</span>
+                        </Link>
+                      )}
+
+                      {project.imdbLink && (
+                        <Link
+                          href={project.imdbLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${project.title} on IMDb`}
+                          className="absolute top-4 right-4 hover:opacity-90 transition-opacity"
+                        >
+                          <Image
+                            src="/logofiles/IMDB_Logo_2016.svg"
+                            alt="IMDb"
+                            width={64}
+                            height={32}
+                            className="h-6 w-auto"
+                            priority={false}
+                          />
+                        </Link>
+                      )}
+                    </div>
                 </motion.div>
               ))}
             </div>

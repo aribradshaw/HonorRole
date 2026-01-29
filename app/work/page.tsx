@@ -28,50 +28,61 @@ export default function WorkPage() {
       {/* Projects Section */}
       <section className="relative w-full py-20 md:py-24 px-4 md:px-8">
         <div className="w-full max-w-6xl mx-auto space-y-32">
-          {projects.map((project, index) => (
+          {projects.map((project, index) => {
+            const isIdiotka = project.title === "Idiotka";
+            // For Idiotka: text on left (65%), poster on right (35%)
+            // For others: alternate layout with poster/text based on index
+            const posterOrder = isIdiotka ? "md:order-2" : (index % 2 === 0 ? "md:order-1" : "md:order-2");
+            const textOrder = isIdiotka ? "md:order-1" : (index % 2 === 0 ? "md:order-2" : "md:order-1");
+            const gridTemplateCols = isIdiotka ? "65% 35%" : "1fr 2fr";
+            
+            return (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="grid md:grid-cols-[2fr_3fr] gap-12 items-center"
+              className="grid gap-12 items-center md:grid-cols-[1fr_2fr]"
+              style={isIdiotka ? { gridTemplateColumns: gridTemplateCols } : undefined}
             >
-              <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
+              <div className={posterOrder}>
                 <div className="relative flex flex-col items-center">
-                  <div className="relative w-full aspect-[2/3] max-w-[50%] rounded-custom-lg overflow-hidden">
+                  <div className="relative w-full rounded-custom-lg overflow-hidden">
                     {project.poster ?? project.image ? (
-                      <Image
-                        src={(project.poster ?? project.image) as string}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover"
-                      />
+                      <div className="relative w-full">
+                        <Image
+                          src={(project.poster ?? project.image) as string}
+                          alt={project.title}
+                          width={800}
+                          height={1200}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="w-full h-auto object-contain rounded-custom-lg"
+                        />
+                        {project.trailerYouTubeUrl && (
+                          <Link
+                            href={project.trailerYouTubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Watch ${project.title} trailer`}
+                            className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
+                          >
+                            <FaPlay className="text-sm rounded-none" style={{ borderRadius: 0 }} aria-hidden="true" />
+                            <span>Watch trailer</span>
+                          </Link>
+                        )}
+                      </div>
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-[#181619]">
+                      <div className="flex items-center justify-center bg-[#181619] min-h-[500px] rounded-custom-lg">
                         <span className="text-[#ca9215] text-xl md:text-2xl font-semibold tracking-wide uppercase">
                           Coming Soon
                         </span>
                       </div>
                     )}
-
-                    {project.trailerYouTubeUrl && (
-                      <Link
-                        href={project.trailerYouTubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Watch ${project.title} trailer`}
-                        className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/0 px-4 py-2 text-sm font-semibold tracking-wide text-white hover:bg-black/20 transition-colors"
-                      >
-                        <FaPlay className="text-sm rounded-none" style={{ borderRadius: 0 }} aria-hidden="true" />
-                        <span>Watch trailer</span>
-                      </Link>
-                    )}
                   </div>
                 </div>
               </div>
-              <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
+              <div className={textOrder}>
                 <div className="flex flex-wrap items-center gap-4 mb-4">
                   <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-wide">
                     {project.title}
@@ -156,7 +167,8 @@ export default function WorkPage() {
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

@@ -14,21 +14,18 @@ export default function PressPage() {
       publication: "INTERVIEW MAG",
       date: "March 21, 2025",
       href: "https://www.interviewmagazine.com/film/how-camila-mendes-and-rachel-matthews-turned-an-nyu-meet-cute-into-a-production-company",
-      image: "/photos/R0001860.jpeg"
     },
     {
       title: "How Camila Mendes Proved to Herself and Others ‘I Actually Really Know What I’m Talking About’",
       publication: "INDIEWIRE",
       date: "June 12, 2024",
       href: "https://www.indiewire.com/awards/consider-this/camila-mendes-interview-musica-upgraded-tv-movie-emmy-1235015581/",
-      image: "/photos/camila-mendes.jpeg"
     },
     {
       title: "Camila Mendes & Rachel Matthews Launch Production Company Honor Role",
       publication: "DEADLINE",
       date: "June 3, 2024",
       href: "https://deadline.com/2024/06/camila-mendes-rachel-matthews-honor-role-1235958128/",
-      image: "/photos/R0002007.jpeg"
     }
   ];
 
@@ -81,7 +78,7 @@ export default function PressPage() {
       <section className="relative w-full py-20 md:py-24 px-4 md:px-8">
         <div className="w-full max-w-6xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {articles.map((article, index) => {
-            const coverImage = articleImages[article.href] ?? article.image;
+            const coverImage = articleImages[article.href];
             return (
             <motion.div
               key={article.title}
@@ -97,13 +94,19 @@ export default function PressPage() {
                 rel="noopener noreferrer"
                 className="block rounded-custom-lg overflow-hidden border border-white/10 bg-black/20 hover:border-white/30 transition-colors"
               >
-                <div className="relative w-full overflow-hidden">
-                  <img
-                    src={coverImage}
-                    alt={article.title}
-                    loading="lazy"
-                    className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div className="relative w-full overflow-hidden bg-white/5">
+                  {coverImage ? (
+                    <img
+                      src={coverImage}
+                      alt={article.title}
+                      loading="lazy"
+                      className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex aspect-[16/10] w-full items-center justify-center text-white/30 text-sm uppercase tracking-wider">
+                      Article
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
                 </div>
                 <div className="p-5 space-y-3">

@@ -113,7 +113,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white font-display">Meet the Team</h2>
           </motion.div>
           <div className="space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:flex md:flex-row md:justify-center md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:flex md:flex-row md:justify-center md:gap-8">
               {teamMembers.slice(0, 2).map((member) => (
                 <motion.div
                   key={member.name}
@@ -139,7 +139,7 @@ export default function AboutPage() {
                 </motion.div>
               ))}
             </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-wrap justify-center gap-8">
               {teamMembers.slice(2).map((member) => (
                 <motion.div
                   key={member.name}
@@ -147,7 +147,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                className="rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
+                  className="w-full max-w-[260px] rounded-custom-lg overflow-hidden bg-white/5 border border-white/10"
                 >
                   <div className="relative w-full aspect-[4/5]">
                     <Image

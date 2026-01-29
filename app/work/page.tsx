@@ -35,15 +35,11 @@ export default function WorkPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="grid md:grid-cols-2 gap-12 items-center"
+              className="grid md:grid-cols-[2fr_3fr] gap-12 items-center"
             >
               <div className={`${index % 2 === 0 ? "md:order-1" : "md:order-2"}`}>
-                <div className="relative">
-                  <div
-                    className={`relative w-full rounded-custom-lg overflow-hidden ${
-                      project.poster ?? project.image ? "aspect-[2/3]" : "aspect-[4/3]"
-                    }`}
-                  >
+                <div className="relative flex flex-col items-center">
+                  <div className="relative w-full aspect-[2/3] max-w-[50%] rounded-custom-lg overflow-hidden">
                     {project.poster ?? project.image ? (
                       <Image
                         src={(project.poster ?? project.image) as string}
@@ -73,14 +69,31 @@ export default function WorkPage() {
                       </Link>
                     )}
                   </div>
-
+                </div>
+              </div>
+              <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
+                <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-wide">
+                    {project.title}
+                  </h2>
+                  {project.instagram && (
+                    <Link
+                      href={project.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} on Instagram`}
+                      className="text-white/70 hover:text-[#ca9215] transition-colors"
+                    >
+                      <FaInstagram className="text-3xl md:text-4xl" aria-hidden="true" />
+                    </Link>
+                  )}
                   {project.imdbLink && (
                     <Link
                       href={project.imdbLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on IMDb`}
-                      className="absolute top-4 right-4 hover:opacity-90 transition-opacity"
+                      className="text-white/70 hover:opacity-90 transition-opacity"
                     >
                       <Image
                         src="/logofiles/IMDB_Logo_2016.svg"
@@ -90,25 +103,6 @@ export default function WorkPage() {
                         className="h-6 w-auto"
                         priority={false}
                       />
-                    </Link>
-                  )}
-                </div>
-              </div>
-              <div className={`${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
-                <div className="flex items-start gap-4 mb-4">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-wide">
-                    {project.title}
-                  </h2>
-
-                  {project.instagram && (
-                    <Link
-                      href={project.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${project.title} on Instagram`}
-                    className="mt-2 text-white/70 hover:text-[#ca9215] transition-colors"
-                    >
-                      <FaInstagram className="text-3xl md:text-4xl" aria-hidden="true" />
                     </Link>
                   )}
                 </div>
